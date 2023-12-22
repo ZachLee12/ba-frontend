@@ -1,14 +1,14 @@
 <div id="LoginComponent">
-    <form class="login-form">
+    <form class="login-form" [formGroup]="loginForm">
         <mat-form-field appearance="outline">
             <mat-label>Username</mat-label>
-            <input matInput>
+            <input matInput formControlName="username">
         </mat-form-field>
         <mat-form-field appearance="outline">
             <mat-label>Password</mat-label>
-            <input matInput />
+            <input matInput formControlName="password" />
         </mat-form-field>
-        <button mat-raised-button color="primary">Log In</button>
+        <button (click)="login()" mat-raised-button color="primary">Log In</button>
     </form>
 
 </div>
