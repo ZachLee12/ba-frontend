@@ -34,6 +34,10 @@ export class LoginComponent {
       .subscribe()
   }
 
+  getProtected() {
+    this.loginService.getProtectedResource().subscribe(res => console.log(res))
+  }
+
   storeTokenInSessionStorage(token: Token) {
     type KeyValuePair = [string, string]
     Object.entries(token).forEach((keyValuePair: KeyValuePair) => {
