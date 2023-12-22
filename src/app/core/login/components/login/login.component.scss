@@ -2,4 +2,18 @@
     background-color: aliceblue;
     height: 100%;
     width: 100%;
+    display: flex;
+}
+
+.login-form {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    border: 2px solid rgb(166, 166, 166);
+    padding: 20px;
+    width: clamp(350px, 50%, 500px);
+    box-shadow: 2px 3px 5px 1px rgba(188, 188, 188, 0.476);
+    height: 200px;
+    margin: auto;
+    border-radius: 5px;
 }
