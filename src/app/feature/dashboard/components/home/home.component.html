@@ -3,6 +3,12 @@
         <mat-sidenav #sidenav mode="side" class="sidenav" opened>Sidenav content</mat-sidenav>
         <mat-sidenav-content>
             <div class="main-content">
+                <mat-card class="municipality-card" *ngFor="let municipality of userMunicipalities">
+                    <mat-card-header>
+                        <mat-card-title>{{municipality}}</mat-card-title>
+                        <mat-card-subtitle>hallo</mat-card-subtitle>
+                    </mat-card-header>
+                </mat-card>
                 <button mat-raised-button (click)="sidenav.toggle()">Toggle sidenav</button>
             </div>
         </mat-sidenav-content>

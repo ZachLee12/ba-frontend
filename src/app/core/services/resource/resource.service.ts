@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable, inject } from '@angular/core';
-import { Observable } from 'rxjs';
+import { Observable, map } from 'rxjs';
 import { LoginService } from '../login/login.service';
 
 
@@ -14,6 +14,8 @@ export class ResourceService {
   getUserMunicipality(): Observable<any> {
     const decodedToken = this.loginService.getDecodedJwt()
     const { username } = decodedToken as any
-    return this.httpClient.get(`http://localhost:5000/municipality/user/${username}`)
+    return this.httpClient
+      .get(`http://localhost:5000/municipality/user/${username}`)
+      .pipe(map((res: any) => res.data))
   }
 }

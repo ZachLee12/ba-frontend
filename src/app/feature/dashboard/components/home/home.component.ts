@@ -10,10 +10,19 @@ import { ResourceService } from 'src/app/core/services/resource/resource.service
 export class HomeComponent {
   resourceService: ResourceService = inject(ResourceService)
 
+  userMunicipalities: string[] = []
+
   ngOnInit() {
+    this.getUserMunicipality()
+  }
+
+
+  getUserMunicipality() {
     this.resourceService.getUserMunicipality()
       .subscribe({
-        next: res => console.log(res)
+        next: data => {
+          this.userMunicipalities = data
+        }
       })
   }
 

@@ -4,8 +4,7 @@ import { HomeComponent } from './components/home/home.component';
 import { DashboardRoutingModule } from './dashboard-routing.module';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatButtonModule } from '@angular/material/button';
-import { MatSelectModule } from '@angular/material/select';
-import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatCardModule } from '@angular/material/card';
 
 @NgModule({
   declarations: [
@@ -16,8 +15,7 @@ import { MatFormFieldModule } from '@angular/material/form-field';
     CommonModule,
     MatSidenavModule,
     MatButtonModule,
-    MatSelectModule,
-    MatFormFieldModule
+    MatCardModule
   ]
 })
 export class DashboardModule { }
