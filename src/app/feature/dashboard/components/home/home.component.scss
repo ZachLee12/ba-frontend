@@ -1,0 +1,20 @@
+#HomeComponent {
+    height: 100%;
+
+    * {
+        box-sizing: border-box;
+    }
+}
+
+.example-container {
+    height: 100%;
+}
+
+.main-content {
+    border: 2px solid red;
+    height: 100%;
+}
+
+.sidenav {
+    width: 220px;
+}
