@@ -35,7 +35,7 @@ export class LoginComponent {
       .subscribe({
         next: tokenResponse => {
           this.storeTokenInSessionStorage(tokenResponse)
-          this.router.navigate(['home'])
+          this.router.navigate(['dashboard', 'home'])
         }
       })
   }
