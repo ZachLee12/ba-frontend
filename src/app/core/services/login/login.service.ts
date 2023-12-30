@@ -19,7 +19,7 @@ export class LoginService {
     return this.httpClient.post<Token>('http://localhost:5555/token', httpBody)
   }
 
-  getProtectedResource(): Observable<any> {
-    return this.httpClient.get('http://localhost:5555/protected')
+  getUserMunicipality(): Observable<any> {
+    return this.httpClient.get('http://localhost:5000/municipality/indicators')
   }
 }

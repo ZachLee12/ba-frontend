@@ -1,8 +1,8 @@
 import { Component, inject } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { tap } from 'rxjs';
+import { LoginService } from 'src/app/core/services/login/login.service';
 import { Token, UserCredentials } from 'src/app/interfaces/login.interfaces';
-import { LoginService } from 'src/app/services/login/login.service';
 
 @Component({
   selector: 'app-login',
@@ -34,8 +34,8 @@ export class LoginComponent {
       .subscribe()
   }
 
-  getProtected() {
-    this.loginService.getProtectedResource().subscribe(res => console.log(res))
+  getUserMunicipality() {
+    this.loginService.getUserMunicipality().subscribe(res => console.log(res))
   }
 
   storeTokenInSessionStorage(token: Token) {

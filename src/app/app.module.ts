@@ -3,10 +3,11 @@ import { BrowserModule } from '@angular/platform-browser';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { LoginModule } from './core/modules/login/login.module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
-import { TokenInterceptor } from './core/interceptors/token.interceptor';
+import { TokenInterceptor } from './core/interceptors/token/token.interceptor';
+import { FeatureModule } from './feature/feature.module';
+import { CoreModule } from './core/core.module';
 
 @NgModule({
   declarations: [
@@ -15,7 +16,8 @@ import { TokenInterceptor } from './core/interceptors/token.interceptor';
   imports: [
     BrowserModule,
     AppRoutingModule,
-    LoginModule,
+    CoreModule,
+    FeatureModule,
     BrowserAnimationsModule
   ],
   providers: [
