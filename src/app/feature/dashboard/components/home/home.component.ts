@@ -1,4 +1,6 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
+import { ResourceService } from 'src/app/core/services/resource/resource.service';
+
 
 @Component({
   selector: 'app-home',
@@ -6,5 +8,13 @@ import { Component } from '@angular/core';
   styleUrls: ['./home.component.scss']
 })
 export class HomeComponent {
+  resourceService: ResourceService = inject(ResourceService)
+
+  ngOnInit() {
+    this.resourceService.getUserMunicipality()
+      .subscribe({
+        next: res => console.log(res)
+      })
+  }
 
 }

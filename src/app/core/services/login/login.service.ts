@@ -2,6 +2,7 @@ import { Injectable, inject } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Token, UserCredentials } from 'src/app/interfaces/login.interfaces';
 import { Observable } from 'rxjs';
+import * as jwt_decode from "jwt-decode";
 
 @Injectable({
   providedIn: 'root'
@@ -19,7 +20,13 @@ export class LoginService {
     return this.httpClient.post<Token>('http://localhost:5555/token', httpBody)
   }
 
-  getUserMunicipality(): Observable<any> {
-    return this.httpClient.get('http://localhost:5000/municipality/indicators')
+  getDecodedJwt() {
+    const token = sessionStorage.getItem('access_token') || null
+    if (token) {
+      return jwt_decode.jwtDecode(token)
+    } else {
+      return null
+    }
   }
+
 }
