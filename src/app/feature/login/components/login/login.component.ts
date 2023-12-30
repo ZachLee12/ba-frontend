@@ -1,5 +1,6 @@
 import { Component, inject } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 import { tap } from 'rxjs';
 import { LoginService } from 'src/app/core/services/login/login.service';
 import { Token, UserCredentials } from 'src/app/interfaces/login.interfaces';
@@ -13,6 +14,7 @@ export class LoginComponent {
   loginForm!: FormGroup;
   formBuilder: FormBuilder = inject(FormBuilder)
   loginService: LoginService = inject(LoginService)
+  router: Router = inject(Router)
 
   constructor(
 
@@ -30,12 +32,12 @@ export class LoginComponent {
   login() {
     const userCredentials: UserCredentials = this.loginForm.value
     this.loginService.login(userCredentials)
-      .pipe(tap(res => this.storeTokenInSessionStorage(res)))
-      .subscribe()
-  }
-
-  getUserMunicipality() {
-    this.loginService.getUserMunicipality().subscribe(res => console.log(res))
+      .subscribe({
+        next: tokenResponse => {
+          this.storeTokenInSessionStorage(tokenResponse)
+          this.router.navigate(['home'])
+        }
+      })
   }
 
   storeTokenInSessionStorage(token: Token) {
