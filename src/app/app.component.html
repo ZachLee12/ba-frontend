@@ -1,8 +1,13 @@
 <mat-sidenav-container class="example-container">
-    <mat-sidenav #sidenav mode="side" class="sidenav" opened>Sidenav content</mat-sidenav>
+    <mat-sidenav #sidenav mode="side" class="sidenav" [opened]="sidenavIsOpen">
+        <mat-nav-list>
+            <a mat-list-item [routerLink]="['dashboard','home']">Home</a>
+            <a mat-list-item routerLink="/login">Tab 2</a>
+        </mat-nav-list>
+    </mat-sidenav>
     <mat-sidenav-content>
         <router-outlet>
-            <button mat-raised-button (click)="sidenav.toggle()">Toggle sidenav</button>
+            <!-- <button mat-raised-button (click)="sidenav.toggle()">Toggle sidenav</button> -->
         </router-outlet>
     </mat-sidenav-content>
 </mat-sidenav-container>
