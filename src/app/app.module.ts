@@ -7,6 +7,10 @@ import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { TokenInterceptor } from './core/interceptors/token/token.interceptor';
 import { FeatureModule } from './feature/feature.module';
 import { CoreModule } from './core/core.module';
+import { MatSidenavModule } from '@angular/material/sidenav';
+import { MatButtonModule } from '@angular/material/button';
+import { MatCardModule } from '@angular/material/card';
+
 
 @NgModule({
   declarations: [
@@ -17,7 +21,11 @@ import { CoreModule } from './core/core.module';
     AppRoutingModule,
     CoreModule,
     FeatureModule,
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
+    MatSidenavModule,
+    MatButtonModule,
+    MatCardModule
+
   ],
   providers: [
     {

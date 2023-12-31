@@ -1,16 +1,10 @@
 #HomeComponent {
-    height: 100%;
 
     * {
         box-sizing: border-box;
     }
-}
 
-.example-container {
     height: 100%;
-}
-
-.main-content {
     border: 2px solid red;
     display: flex;
     padding: 20px;
@@ -19,10 +13,6 @@
     gap: 10px;
     overflow-y: auto;
     height: 100%;
-}
-
-.sidenav {
-    width: 220px;
 }
 
 .municipality-card {
