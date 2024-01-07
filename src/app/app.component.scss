@@ -1,5 +1,41 @@
-.example-container {
-    height: 100%;
+$header-height: 60px;
+$header-border-bottom-height: 5px;
+
+.container {
+    height: calc(100% - $header-height);
+}
+
+.header {
+    height: $header-height;
+    display: flex;
+
+    background:
+        /* gradient can be an image */
+        linear-gradient(to right,
+            #0e4882 0%,
+            #1d5386 12%,
+            #2e7ec8 47%,
+            #44a0f6 100%) left bottom white no-repeat;
+    background-size: 100% $header-border-bottom-height;
+    /* if linear-gradient, we need to resize it */
+
+
+    .menu-icon-container {
+        display: flex;
+        justify-content: center;
+        height: calc(100% - $header-border-bottom-height);
+        width: 60px;
+
+        &:hover {
+            background-color: #ededed;
+            cursor: pointer;
+        }
+
+        .menu-icon {
+            display: flex;
+            align-self: center;
+        }
+    }
 }
 
 .sidenav {

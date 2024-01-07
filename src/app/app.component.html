@@ -1,4 +1,10 @@
-<mat-sidenav-container class="example-container">
+<header class="header">
+    <div class="menu-icon-container">
+        <mat-icon class="menu-icon" (click)="sidenav.toggle()" fontIcon="menu"></mat-icon>
+    </div>
+    <h1>Alpine</h1>
+</header>
+<mat-sidenav-container class="container" hasBackdrop="true">
     <mat-sidenav #sidenav mode="side" class="sidenav" [opened]="sidenavIsOpen">
         <mat-accordion>
             <mat-expansion-panel>
@@ -24,8 +30,6 @@
         </mat-accordion>
     </mat-sidenav>
     <mat-sidenav-content>
-        <router-outlet>
-            <button mat-raised-button (click)="sidenav.toggle()">Toggle sidenav</button>
-        </router-outlet>
+        <router-outlet></router-outlet>
     </mat-sidenav-content>
 </mat-sidenav-container>
