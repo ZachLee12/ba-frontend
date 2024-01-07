@@ -1,5 +1,6 @@
 import { Component, inject } from '@angular/core';
 import { Event as NavigationEvent, NavigationStart, Router } from '@angular/router';
+import { LoginService } from './core/services/login/login.service';
 
 @Component({
   selector: 'app-root',
@@ -8,6 +9,7 @@ import { Event as NavigationEvent, NavigationStart, Router } from '@angular/rout
 })
 export class AppComponent {
   router: Router = inject(Router)
+  loginService: LoginService = inject(LoginService)
   userIsLoggedIn: boolean = false
 
   ngOnInit() {
@@ -27,4 +29,9 @@ export class AppComponent {
       }
     )
   }
+
+  logout() {
+    this.loginService.logout()
+  }
+
 }

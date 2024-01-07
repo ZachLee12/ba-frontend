@@ -29,7 +29,8 @@ import { MatIconModule } from '@angular/material/icon';
     MatCardModule,
     MatListModule,
     MatExpansionModule,
-    MatIconModule
+    MatIconModule,
+    MatButtonModule
   ],
   providers: [
     {

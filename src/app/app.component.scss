@@ -36,9 +36,31 @@ $header-border-bottom-height: 5px;
             align-self: center;
         }
     }
+
+    .alpine-title-container {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        height: 100%;
+        padding-top: 3px;
+
+        .alpine-title {
+            font-size: 2em;
+        }
+    }
 }
+
 
 .sidenav {
     width: 220px;
     border-right: 5px solid #bcbcbc;
+
+    .sidenav-content-wrapper {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        height: 99%;
+        width: 99.9%;
+    }
+
 }
