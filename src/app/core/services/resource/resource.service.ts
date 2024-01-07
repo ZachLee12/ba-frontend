@@ -18,4 +18,6 @@ export class ResourceService {
       .get(`http://localhost:5000/municipality/user/${username}`)
       .pipe(map((res: any) => res.data))
   }
+
+
 }

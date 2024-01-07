@@ -62,5 +62,12 @@ $header-border-bottom-height: 5px;
         height: 99%;
         width: 99.9%;
     }
+}
 
+.router-outlet-container {
+    padding: 20px;
+}
+
+.active-route {
+    background-color: #eeeeee;
 }
