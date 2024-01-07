@@ -6,13 +6,13 @@ import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
 import { MunicipalityComponent } from './components/municipality/municipality.component';
-import { IndicatorComponent } from './components/indicator/indicator.component';
+import { IndicatorsComponent } from './components/indicators/indicators.component';
 
 @NgModule({
   declarations: [
     HomeComponent,
     MunicipalityComponent,
-    IndicatorComponent
+    IndicatorsComponent
   ],
   imports: [
     DashboardRoutingModule,
