@@ -1,11 +1,11 @@
 <header class="header">
-    <div class="menu-icon-container">
-        <mat-icon class="menu-icon" (click)="sidenav.toggle()" fontIcon="menu"></mat-icon>
+    <div *ngIf="userIsLoggedIn" class="menu-icon-container" (click)="sidenav.toggle()">
+        <mat-icon class="menu-icon" fontIcon="menu"></mat-icon>
     </div>
     <h1>Alpine</h1>
 </header>
 <mat-sidenav-container class="container" hasBackdrop="true">
-    <mat-sidenav #sidenav mode="side" class="sidenav" [opened]="sidenavIsOpen">
+    <mat-sidenav #sidenav mode="side" class="sidenav" [opened]="userIsLoggedIn">
         <mat-accordion>
             <mat-expansion-panel>
                 <mat-expansion-panel-header>

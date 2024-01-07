@@ -8,7 +8,7 @@ import { Event as NavigationEvent, NavigationStart, Router } from '@angular/rout
 })
 export class AppComponent {
   router: Router = inject(Router)
-  sidenavIsOpen: boolean = false
+  userIsLoggedIn: boolean = false
 
   ngOnInit() {
     //redirect to login page if user is not logged in
@@ -21,7 +21,7 @@ export class AppComponent {
       {
         next: (event: NavigationEvent) => {
           if (event instanceof NavigationStart) {
-            this.sidenavIsOpen = event.url.includes('login') ? false : true
+            this.userIsLoggedIn = sessionStorage.getItem('access_token') ? true : false
           }
         }
       }
