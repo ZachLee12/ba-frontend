@@ -16,7 +16,7 @@ export class ResourceService {
     const decodedToken = this.loginService.getDecodedJwt()
     const { username } = decodedToken as any
     return this.httpClient
-      .get(`${environment.apiUrl}/municipality/user/${username}`)
+      .get(`${environment.apiUrl}/users/username/${username}/municipalities`)
       .pipe(map((res: any) => res.data))
   }
 
@@ -24,7 +24,7 @@ export class ResourceService {
     const decodedToken = this.loginService.getDecodedJwt()
     const { username } = decodedToken as any
     return this.httpClient
-      .get(`${environment.apiUrl}/municipality/indicators/user/${username}`)
+      .get(`${environment.apiUrl}/users/username/${username}/indicators`)
       .pipe(map((res: any) => res.data))
   }
 
