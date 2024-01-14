@@ -8,6 +8,7 @@ import { MatCardModule } from '@angular/material/card';
 import { MunicipalityComponent } from './components/municipality/municipality.component';
 import { IndicatorsComponent } from './components/indicators/indicators.component';
 import { DetailsComponent } from './components/details/details.component';
+import { SharedModule } from 'src/app/shared/shared.module';
 
 @NgModule({
   declarations: [
@@ -21,7 +22,8 @@ import { DetailsComponent } from './components/details/details.component';
     CommonModule,
     MatSidenavModule,
     MatButtonModule,
-    MatCardModule
+    MatCardModule,
+    SharedModule
   ]
 })
 export class DashboardModule { }
