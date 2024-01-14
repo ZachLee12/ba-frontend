@@ -46,7 +46,6 @@ $header-border-bottom-height: 3px;
         }
     }
 
-    /* if linear-gradient, we need to resize it */
     .menu-icon-container {
         display: flex;
         justify-content: center;
@@ -64,10 +63,13 @@ $header-border-bottom-height: 3px;
         }
     }
 
+    .alpine-title-container {
+        cursor: pointer;
 
-    .alpine-title {
-        font-size: 2.5em;
-        font-weight: 500;
+        .alpine-title {
+            font-size: 2.5em;
+            font-weight: 500;
+        }
     }
 
     .login-info-container {
@@ -109,4 +111,9 @@ $header-border-bottom-height: 3px;
             #44a0f6 100%);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
+}
+
+// for the Alpine title, when user is logged out.
+.left-margin {
+    margin-left: 20px;
 }

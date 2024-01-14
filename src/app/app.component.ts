@@ -20,8 +20,7 @@ export class AppComponent {
     if (!accessToken) {
       this.router.navigate(['login'])
     } else {
-      const decoded = jwtDecode(accessToken) as any
-      this.username = decoded.username
+      this.updateUsernameBasedOnToken()
     }
 
     //listen to route change events to hide sidenav accordingly
@@ -30,10 +29,18 @@ export class AppComponent {
         next: (event: NavigationEvent) => {
           if (event instanceof NavigationStart) {
             this.userIsLoggedIn = sessionStorage.getItem('access_token') ? true : false
+            if (this.userIsLoggedIn) {
+              this.updateUsernameBasedOnToken()
+            }
           }
         }
       }
     )
+  }
+
+  updateUsernameBasedOnToken() {
+    const decoded = jwtDecode(sessionStorage.getItem('access_token')!) as any
+    this.username = decoded.username
   }
 
   logout() {

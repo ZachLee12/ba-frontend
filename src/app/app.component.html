@@ -4,12 +4,14 @@
             <mat-icon class="menu-icon" fontIcon="menu"></mat-icon>
         </div>
         <div class="alpine-title-container">
-            <p class="alpine-title"><span class="beautify">Alpine</span></p>
+            <p class="alpine-title" [ngClass]="{'left-margin':!userIsLoggedIn}" [routerLink]="['/','dashboard','home']">
+                <span class="beautify">Alpine</span>
+            </p>
         </div>
     </section>
     <section class="right-header-section">
         <div class="login-info-container">
-            <p class="username">Logged in as: {{username}}</p>
+            <p class="username" *ngIf="userIsLoggedIn">Logged in as: {{username}}</p>
         </div>
     </section>
 </header>
