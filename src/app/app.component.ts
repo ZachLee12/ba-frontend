@@ -1,6 +1,7 @@
 import { Component, inject } from '@angular/core';
 import { Event as NavigationEvent, NavigationStart, Router } from '@angular/router';
 import { LoginService } from './core/services/login/login.service';
+import { jwtDecode } from 'jwt-decode';
 
 @Component({
   selector: 'app-root',
@@ -11,11 +12,16 @@ export class AppComponent {
   router: Router = inject(Router)
   loginService: LoginService = inject(LoginService)
   userIsLoggedIn: boolean = false
+  username!: string;
 
   ngOnInit() {
     //redirect to login page if user is not logged in
-    if (!sessionStorage.getItem('access_token')) {
+    const accessToken = sessionStorage.getItem('access_token')
+    if (!accessToken) {
       this.router.navigate(['login'])
+    } else {
+      const decoded = jwtDecode(accessToken) as any
+      this.username = decoded.username
     }
 
     //listen to route change events to hide sidenav accordingly

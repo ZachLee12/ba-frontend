@@ -1,10 +1,17 @@
 <header class="header">
-    <div *ngIf="userIsLoggedIn" class="menu-icon-container" (click)="sidenav.toggle()">
-        <mat-icon class="menu-icon" fontIcon="menu"></mat-icon>
-    </div>
-    <div class="alpine-title-container">
-        <p class="alpine-title">Alpine</p>
-    </div>
+    <section class="left-header-section">
+        <div *ngIf="userIsLoggedIn" class="menu-icon-container" (click)="sidenav.toggle()">
+            <mat-icon class="menu-icon" fontIcon="menu"></mat-icon>
+        </div>
+        <div class="alpine-title-container">
+            <p class="alpine-title">Alpine</p>
+        </div>
+    </section>
+    <section class="right-header-section">
+        <div class="login-info-container">
+            <p class="username">Logged in as: {{username}}</p>
+        </div>
+    </section>
 </header>
 <mat-sidenav-container class="container">
     <mat-sidenav #sidenav mode="side" class="sidenav" [opened]="userIsLoggedIn">

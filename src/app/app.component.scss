@@ -8,6 +8,7 @@ $header-border-bottom-height: 5px;
 .header {
     height: $header-height;
     display: flex;
+    align-items: center;
 
     background:
         /* gradient can be an image */
@@ -17,9 +18,23 @@ $header-border-bottom-height: 5px;
             #2e7ec8 47%,
             #44a0f6 100%) left bottom white no-repeat;
     background-size: 100% $header-border-bottom-height;
+
+    .left-header-section {
+        display: flex;
+        flex-grow: 1;
+    }
+
+    .right-header-section {
+        display: flex;
+        flex-grow: 1;
+        flex-direction: row-reverse;
+
+        .login-info-container {
+            margin-right: 5px;
+        }
+    }
+
     /* if linear-gradient, we need to resize it */
-
-
     .menu-icon-container {
         display: flex;
         justify-content: center;
@@ -37,17 +52,17 @@ $header-border-bottom-height: 5px;
         }
     }
 
-    .alpine-title-container {
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        height: 100%;
-        padding-top: 3px;
 
-        .alpine-title {
-            font-size: 2em;
+    .alpine-title {
+        font-size: 2em;
+    }
+
+    .login-info-container {
+        .username {
+            font-size: 1.2em;
         }
     }
+
 }
 
 
