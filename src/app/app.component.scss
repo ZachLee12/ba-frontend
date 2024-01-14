@@ -1,5 +1,5 @@
 $header-height: 60px;
-$header-border-bottom-height: 5px;
+$header-border-bottom-height: 3px;
 
 .container {
     height: calc(100% - $header-height);
@@ -21,7 +21,19 @@ $header-border-bottom-height: 5px;
 
     .left-header-section {
         display: flex;
+        align-items: center;
         flex-grow: 1;
+        height: 100%;
+
+        .menu-icon-container {
+            height: calc($header-height - $header-border-bottom-height - 5px);
+        }
+
+        .alpine-title-container {
+            .alpine-title {
+                user-select: none;
+            }
+        }
     }
 
     .right-header-section {
@@ -54,7 +66,8 @@ $header-border-bottom-height: 5px;
 
 
     .alpine-title {
-        font-size: 2em;
+        font-size: 2.5em;
+        font-weight: 500;
     }
 
     .login-info-container {
@@ -86,4 +99,14 @@ $header-border-bottom-height: 5px;
 
 .active-route {
     background-color: #eeeeee;
+}
+
+.beautify {
+    background-image: linear-gradient(to right,
+            #0e4882 0%,
+            #1d5386 12%,
+            #2e7ec8 47%,
+            #44a0f6 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
 }
