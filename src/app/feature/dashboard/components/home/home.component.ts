@@ -1,5 +1,6 @@
 import { Component, inject } from '@angular/core';
 import { ResourceService } from 'src/app/core/services/resource/resource.service';
+import { UserResource } from 'src/app/interfaces/resources.interfaces';
 
 
 @Component({
@@ -10,18 +11,18 @@ import { ResourceService } from 'src/app/core/services/resource/resource.service
 export class HomeComponent {
   resourceService: ResourceService = inject(ResourceService)
 
-  userMunicipalities: string[] = []
+  userResources: UserResource[] = []
 
   ngOnInit() {
-    this.getUserMunicipality()
+    this.getUserResources()
   }
 
 
-  getUserMunicipality() {
-    this.resourceService.getUserMunicipality()
+  getUserResources() {
+    this.resourceService.getUserResources()
       .subscribe({
         next: data => {
-          this.userMunicipalities = data
+          this.userResources = data
         }
       })
   }

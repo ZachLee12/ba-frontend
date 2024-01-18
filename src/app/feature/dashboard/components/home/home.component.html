@@ -1,11 +1,11 @@
 <div id="HomeComponent">
-    <mat-card class="municipality-card" *ngFor="let municipality of userMunicipalities">
+    <mat-card class="municipality-card" *ngFor="let resource of userResources">
         <mat-card-header>
-            <mat-card-title>{{municipality | capitalizeFirstLetter}}</mat-card-title>
+            <mat-card-title>{{resource.municipality | capitalizeFirstLetter}}</mat-card-title>
             <mat-card-subtitle>Description</mat-card-subtitle>
         </mat-card-header>
         <mat-card-actions>
-            <button mat-stroked-button color="primary" [routerLink]="['/','dashboard','details',municipality]">
+            <button mat-stroked-button color="primary" [routerLink]="['/','dashboard','details',resource.municipality]">
                 Details
             </button>
         </mat-card-actions>

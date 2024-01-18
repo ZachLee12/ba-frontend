@@ -31,23 +31,6 @@
                         </a>
                     </mat-nav-list>
                 </mat-expansion-panel>
-                <mat-expansion-panel>
-                    <mat-expansion-panel-header>
-                        <mat-panel-title>
-                            Resources
-                        </mat-panel-title>
-                    </mat-expansion-panel-header>
-                    <mat-nav-list>
-                        <a mat-list-item routerLinkActive="active-route" [routerLink]="['dashboard','municipalities']">
-                            Municipality
-                        </a>
-                    </mat-nav-list>
-                    <mat-nav-list>
-                        <a mat-list-item routerLinkActive="active-route" [routerLink]="['dashboard','indicators']">
-                            Indicators
-                        </a>
-                    </mat-nav-list>
-                </mat-expansion-panel>
             </mat-accordion>
 
             <button mat-stroked-button color="basic" (click)="logout()">Log Out</button>

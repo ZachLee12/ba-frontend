@@ -12,21 +12,12 @@ export class ResourceService {
   httpClient: HttpClient = inject(HttpClient)
   loginService: LoginService = inject(LoginService)
 
-  getUserMunicipality(): Observable<any> {
+  getUserResources(): Observable<any> {
     const decodedToken = this.loginService.getDecodedJwt()
     const { username } = decodedToken as any
     return this.httpClient
-      .get(`${environment.apiUrl}/users/username/${username}/municipalities`)
+      .get(`${environment.apiUrl}/users/username/${username}/resources`)
       .pipe(map((res: any) => res.data))
   }
-
-  getUserIndicators(): Observable<any> {
-    const decodedToken = this.loginService.getDecodedJwt()
-    const { username } = decodedToken as any
-    return this.httpClient
-      .get(`${environment.apiUrl}/users/username/${username}/indicators`)
-      .pipe(map((res: any) => res.data))
-  }
-
 
 }
