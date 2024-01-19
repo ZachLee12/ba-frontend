@@ -21,4 +21,8 @@ export class ResourceService {
       .pipe(map((res: any) => res.data))
   }
 
+  makeDummyExpressCall(username: string) {
+    return this.httpClient.get(`http://localhost:5000/users/username/${username}/resources`)
+  }
+
 }

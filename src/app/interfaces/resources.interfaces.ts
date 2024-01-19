@@ -1,6 +1,6 @@
 export interface UserResource {
     municipality: string,
-    grouped: boolean,
+    grouped: string,
     indicators: any[]
 }
 

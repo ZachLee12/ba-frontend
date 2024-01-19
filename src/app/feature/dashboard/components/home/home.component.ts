@@ -1,6 +1,6 @@
 import { Component, inject } from '@angular/core';
 import { ResourceService } from 'src/app/core/services/resource/resource.service';
-import { UserResource } from 'src/app/interfaces/resources.interfaces';
+import { User, UserResource } from 'src/app/interfaces/resources.interfaces';
 
 
 @Component({
@@ -11,20 +11,24 @@ import { UserResource } from 'src/app/interfaces/resources.interfaces';
 export class HomeComponent {
   resourceService: ResourceService = inject(ResourceService)
 
-  userResources: UserResource[] = []
+  user!: User;
 
   ngOnInit() {
-    this.getUserResources()
+    this.getUser()
   }
 
 
-  getUserResources() {
+  getUser() {
     this.resourceService.getUserResources()
       .subscribe({
         next: data => {
-          this.userResources = data.access
+          this.user = data
         }
       })
+  }
+
+  makeDummyExpressCall() {
+    this.resourceService.makeDummyExpressCall(this.user.username).subscribe(console.log)
   }
 
 }

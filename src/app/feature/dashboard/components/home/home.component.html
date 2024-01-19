@@ -1,20 +1,23 @@
 <div id="HomeComponent">
     <h1>CoP Project</h1>
     <button class="go-to-project-btn" mat-raised-button color="primary">Go to Project</button>
+    <button class="go-to-project-btn" mat-stroked-button color="primary" (click)="makeDummyExpressCall()">Make Test
+        Call</button>
     <div class="municipality-card-container">
-        <mat-card class="municipality-card" *ngFor="let resource of userResources">
+        <mat-card class="municipality-card" *ngFor="let access of user?.access">
             <mat-card-header>
-                <mat-card-title>{{resource.municipality | capitalizeFirstLetter}}</mat-card-title>
+                <mat-card-title>{{access.municipality | capitalizeFirstLetter}}</mat-card-title>
             </mat-card-header>
             <mat-card-content>
-                <p>Indicators</p>
+                <!-- using string comparison, because access.grouped is a string boolean from the database -->
+                <p>{{access.grouped ==='true'? 'Grouped':'Ungrouped'}} Indicators</p>
                 <ul>
-                    <li *ngFor="let indicator of resource.indicators">{{indicator}}</li>
+                    <li *ngFor="let indicator of access.indicators">{{indicator}}</li>
                 </ul>
             </mat-card-content>
             <mat-card-actions>
                 <button mat-stroked-button color="primary"
-                    [routerLink]="['/','dashboard','details',resource.municipality]">
+                    [routerLink]="['/','dashboard','details',access.municipality]">
                     Details
                 </button>
             </mat-card-actions>
