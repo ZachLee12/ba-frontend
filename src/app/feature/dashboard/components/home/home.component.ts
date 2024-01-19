@@ -22,7 +22,7 @@ export class HomeComponent {
     this.resourceService.getUserResources()
       .subscribe({
         next: data => {
-          this.userResources = data
+          this.userResources = data.access
         }
       })
   }

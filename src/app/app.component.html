@@ -11,7 +11,7 @@
     </section>
     <section class="right-header-section">
         <div class="login-info-container">
-            <p class="username" *ngIf="userIsLoggedIn">Logged in as: {{username}}</p>
+            <p class="username" *ngIf="userIsLoggedIn">Welcome, {{username | capitalizeFirstLetter}}</p>
         </div>
     </section>
 </header>

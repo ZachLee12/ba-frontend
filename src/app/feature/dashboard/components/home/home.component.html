@@ -1,13 +1,23 @@
 <div id="HomeComponent">
-    <mat-card class="municipality-card" *ngFor="let resource of userResources">
-        <mat-card-header>
-            <mat-card-title>{{resource.municipality | capitalizeFirstLetter}}</mat-card-title>
-            <mat-card-subtitle>Description</mat-card-subtitle>
-        </mat-card-header>
-        <mat-card-actions>
-            <button mat-stroked-button color="primary" [routerLink]="['/','dashboard','details',resource.municipality]">
-                Details
-            </button>
-        </mat-card-actions>
-    </mat-card>
+    <h1>CoP Project</h1>
+    <button class="go-to-project-btn" mat-raised-button color="primary">Go to Project</button>
+    <div class="municipality-card-container">
+        <mat-card class="municipality-card" *ngFor="let resource of userResources">
+            <mat-card-header>
+                <mat-card-title>{{resource.municipality | capitalizeFirstLetter}}</mat-card-title>
+            </mat-card-header>
+            <mat-card-content>
+                <p>Indicators</p>
+                <ul>
+                    <li *ngFor="let indicator of resource.indicators">{{indicator}}</li>
+                </ul>
+            </mat-card-content>
+            <mat-card-actions>
+                <button mat-stroked-button color="primary"
+                    [routerLink]="['/','dashboard','details',resource.municipality]">
+                    Details
+                </button>
+            </mat-card-actions>
+        </mat-card>
+    </div>
 </div>
