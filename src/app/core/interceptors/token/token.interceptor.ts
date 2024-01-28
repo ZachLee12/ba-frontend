@@ -1,17 +1,22 @@
-import { Injectable } from '@angular/core';
+import { Injectable, inject } from '@angular/core';
 import {
   HttpRequest,
   HttpHandler,
   HttpEvent,
   HttpInterceptor,
-  HttpHeaders
+  HttpHeaders,
+  HttpResponse,
+  HttpErrorResponse
 } from '@angular/common/http';
-import { Observable } from 'rxjs';
+import { Observable, catchError, tap, throwError } from 'rxjs';
+import { Router } from '@angular/router';
+import { PageLayoutService } from '../../services/page-layout/page-layout.service';
 
 @Injectable()
 export class TokenInterceptor implements HttpInterceptor {
+  router: Router = inject(Router)
+  pageLayoutService: PageLayoutService = inject(PageLayoutService)
 
-  constructor() { }
 
   intercept(request: HttpRequest<unknown>, next: HttpHandler): Observable<HttpEvent<unknown>> {
     const accessToken = sessionStorage.getItem('access_token') || null
@@ -24,6 +29,18 @@ export class TokenInterceptor implements HttpInterceptor {
       )
     }
 
-    return next.handle(request);
+    return next
+      .handle(request)
+      .pipe(
+        catchError(err => {
+          //When JWT expires, server returns 401. 
+          //Then redirect user back to login and disable sidenav 
+          if (err instanceof HttpErrorResponse) {
+            this.router.navigate(['/', 'login'])
+            this.pageLayoutService.closeSidenav$()
+          }
+          return throwError(() => err)
+        })
+      );
   }
 }
