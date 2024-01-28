@@ -9,8 +9,7 @@
                 <mat-card-title>{{access.municipality | capitalizeFirstLetter}}</mat-card-title>
             </mat-card-header>
             <mat-card-content>
-                <!-- using string comparison, because access.grouped is a string boolean from the database -->
-                <p>{{access.grouped ==='true'? 'Grouped':'Ungrouped'}} Indicators</p>
+                <p>{{access.grouped? 'Grouped':'Ungrouped'}} Indicators</p>
                 <ul>
                     <li *ngFor="let indicator of access.indicators">{{indicator}}</li>
                 </ul>
