@@ -3,6 +3,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { tap } from 'rxjs';
 import { LoginService } from 'src/app/core/services/login/login.service';
+import { PageLayoutService } from 'src/app/core/services/page-layout/page-layout.service';
 import { Token, UserCredentials } from 'src/app/interfaces/login.interfaces';
 
 @Component({
@@ -15,10 +16,7 @@ export class LoginComponent {
   formBuilder: FormBuilder = inject(FormBuilder)
   loginService: LoginService = inject(LoginService)
   router: Router = inject(Router)
-
-  constructor(
-
-  ) { }
+  pageLayoutService: PageLayoutService = inject(PageLayoutService)
 
   ngOnInit() {
     this.loginForm = this.formBuilder.group(
@@ -35,6 +33,7 @@ export class LoginComponent {
       .subscribe({
         next: tokenResponse => {
           this.storeTokenInSessionStorage(tokenResponse)
+          this.pageLayoutService.openSidenav$()
           this.router.navigate(['dashboard', 'home'])
         }
       })

@@ -1,6 +1,7 @@
 <header class="header">
     <section class="left-header-section">
-        <div *ngIf="userIsLoggedIn" class="menu-icon-container" (click)="sidenav.toggle()">
+        <div *ngIf="(getSidenavState$() | async) === sidenavStateEnum.opened" class="menu-icon-container"
+            (click)="sidenav.toggle()">
             <mat-icon class="menu-icon" fontIcon="menu"></mat-icon>
         </div>
         <div class="alpine-title-container">
@@ -16,7 +17,8 @@
     </section>
 </header>
 <mat-sidenav-container class="container">
-    <mat-sidenav #sidenav mode="side" class="sidenav" [opened]="userIsLoggedIn">
+    <mat-sidenav #sidenav mode="side" class="sidenav"
+        [opened]="(getSidenavState$() | async) === sidenavStateEnum.opened">
         <div class="sidenav-content-wrapper">
             <mat-accordion>
                 <mat-expansion-panel>
