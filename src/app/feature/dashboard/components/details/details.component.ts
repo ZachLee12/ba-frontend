@@ -1,4 +1,4 @@
-import { Component, inject } from '@angular/core';
+import { Component, Input, inject } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 
 
@@ -9,6 +9,7 @@ import { ActivatedRoute } from '@angular/router';
 })
 export class DetailsComponent {
   activatedRoute: ActivatedRoute = inject(ActivatedRoute)
+  @Input('details') details: any;
   selectedMunicipality!: string;
 
   ngOnInit() {

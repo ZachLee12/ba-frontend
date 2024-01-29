@@ -35,7 +35,7 @@ export class TokenInterceptor implements HttpInterceptor {
         catchError(err => {
           //When JWT expires, server returns 401. 
           //Then redirect user back to login and disable sidenav 
-          if (err instanceof HttpErrorResponse) {
+          if (err instanceof HttpErrorResponse && err.status === 401) {
             this.router.navigate(['/', 'login'])
             this.pageLayoutService.closeSidenav$()
           }

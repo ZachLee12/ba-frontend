@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable, inject } from '@angular/core';
-import { Observable, map } from 'rxjs';
+import { Observable, map, tap } from 'rxjs';
 import { LoginService } from '../login/login.service';
 import { environment } from 'src/environments/environment.development';
 import { User } from 'src/app/interfaces/resources.interfaces';
@@ -23,6 +23,12 @@ export class ResourceService {
 
   makeDummyExpressCall(username: string) {
     return this.httpClient.get(`http://localhost:5000/users/username/${username}/resources`)
+  }
+
+  redirectToCoP() {
+    const token = this.loginService.getJwt()
+    const copUrl = `http://localhost:5000/check?token=${token}`
+    return this.httpClient.get(copUrl, { responseType: 'text' }).pipe(tap(() => window.open(copUrl)))
   }
 
 }

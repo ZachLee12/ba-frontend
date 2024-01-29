@@ -31,4 +31,8 @@ export class HomeComponent {
     this.resourceService.makeDummyExpressCall(this.user.username).subscribe(console.log)
   }
 
+  openCopProject() {
+    this.resourceService.redirectToCoP().subscribe()
+  }
+
 }

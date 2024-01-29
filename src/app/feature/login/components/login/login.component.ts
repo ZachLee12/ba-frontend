@@ -1,7 +1,6 @@
 import { Component, inject } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-import { tap } from 'rxjs';
 import { LoginService } from 'src/app/core/services/login/login.service';
 import { PageLayoutService } from 'src/app/core/services/page-layout/page-layout.service';
 import { Token, UserCredentials } from 'src/app/interfaces/login.interfaces';
@@ -21,7 +20,7 @@ export class LoginComponent {
   ngOnInit() {
     this.loginForm = this.formBuilder.group(
       {
-        'username': ['zachlee', Validators.required],
+        'username': ['', Validators.required],
         'password': ['secret', Validators.required]
       }
     )

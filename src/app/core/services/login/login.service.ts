@@ -36,4 +36,8 @@ export class LoginService {
     }
   }
 
+  getJwt() {
+    return sessionStorage.getItem('access_token') || null
+  }
+
 }
