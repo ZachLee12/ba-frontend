@@ -26,6 +26,7 @@ export class AppComponent {
     if (!accessToken) {
       this.router.navigate(['login'])
     } else {
+      this.pageLayoutService.openSidenav$()
       this.updateUsernameBasedOnToken()
     }
 
