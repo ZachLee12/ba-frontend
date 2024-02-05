@@ -1,0 +1,11 @@
+<div class="SnackBarComponent">
+    <span class="snackBar-label" matSnackBarLabel>
+        {{data.message}}
+    </span>
+    <span matSnackBarActions>
+        <button class="snackBar-btn" mat-stroked-button color="warn" matSnackBarAction
+            (click)="snackBarRef.dismissWithAction()">
+            {{data.actionText}}
+        </button>
+    </span>
+</div>
