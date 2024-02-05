@@ -14,6 +14,7 @@ import { MatListModule } from '@angular/material/list';
 import { MatExpansionModule } from '@angular/material/expansion';
 import { MatIconModule } from '@angular/material/icon';
 import { SharedModule } from './shared/shared.module';
+import { QRCodeModule } from 'angularx-qrcode';
 
 @NgModule({
   declarations: [
@@ -32,7 +33,8 @@ import { SharedModule } from './shared/shared.module';
     MatListModule,
     MatExpansionModule,
     MatIconModule,
-    MatButtonModule
+    MatButtonModule,
+    QRCodeModule
   ],
   providers: [
     {
