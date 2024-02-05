@@ -7,9 +7,14 @@
     padding: 5px 0;
 }
 
-.go-to-project-btn {
-    width: 200px;
-    min-height: 40px;
+.btn-container {
+    display: flex;
+    gap: 30px;
+
+    .go-to-project-btn {
+        width: 200px;
+        min-height: 40px;
+    }
 }
 
 .municipality-card-container {

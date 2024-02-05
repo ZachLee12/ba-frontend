@@ -1,8 +1,11 @@
 <div id="HomeComponent">
     <h1>CoP Project</h1>
-    <button class="go-to-project-btn" mat-raised-button color="primary" (click)="openCopProject()">Open Project</button>
-    <button class="go-to-project-btn" mat-stroked-button color="primary" (click)="makeDummyExpressCall()">Make Test
-        Call</button>
+    <div class="btn-container">
+        <button class="go-to-project-btn" mat-raised-button color="primary" (click)="openCopProject()">Open
+            Project</button>
+        <button class="go-to-project-btn" mat-raised-button color="basic" (click)="makeDummyExpressCall()">Make Test
+            Call</button>
+    </div>
     <div class="municipality-card-container">
         <mat-card class="municipality-card" *ngFor="let access of user?.access">
             <mat-card-header>
