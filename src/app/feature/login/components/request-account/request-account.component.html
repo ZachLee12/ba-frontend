@@ -1,0 +1,51 @@
+<div class="RequestAccountComponent">
+    <mat-stepper class="mat-stepper" orientation="vertical" linear="true" #stepper>
+        <mat-step [stepControl]="usernameFormGroup">
+            <form [formGroup]="usernameFormGroup">
+                <ng-template matStepLabel>Fill out your username</ng-template>
+                <mat-form-field>
+                    <mat-label>Username</mat-label>
+                    <input matInput formControlName="username" required>
+                </mat-form-field>
+                <div>
+                    <button mat-button matStepperNext>Next</button>
+                </div>
+            </form>
+        </mat-step>
+        <mat-step [stepControl]="passwordFormGroup">
+            <form [formGroup]="passwordFormGroup">
+                <ng-template matStepLabel>Pick a strong password</ng-template>
+                <mat-form-field>
+                    <mat-label>Password</mat-label>
+                    <input matInput formControlName="password" required>
+                </mat-form-field>
+                <div>
+                    <button mat-button matStepperPrevious>Back</button>
+                    <button mat-button matStepperNext>Next</button>
+                </div>
+            </form>
+        </mat-step>
+        <mat-step [stepControl]="reasonFormGroup">
+            <form [formGroup]="reasonFormGroup">
+                <ng-template matStepLabel>Why do you want an account with Smart Region Lab?</ng-template>
+                <mat-form-field class="textarea-form-field">
+                    <mat-label>Reason</mat-label>
+                    <textarea cdkTextareaAutosize #autosize="cdkTextareaAutosize" cdkAutosizeMinRows="1"
+                        cdkAutosizeMaxRows="5" matInput formControlName="reason" resize="false" required></textarea>
+                </mat-form-field>
+                <div>
+                    <button mat-button matStepperPrevious>Back</button>
+                    <button mat-button matStepperNext>Next</button>
+                </div>
+            </form>
+        </mat-step>
+        <mat-step>
+            <ng-template matStepLabel>Done</ng-template>
+            <p>You are now done.</p>
+            <div>
+                <button mat-button matStepperPrevious>Back</button>
+                <button mat-button (click)="submitForm()">Submit</button>
+            </div>
+        </mat-step>
+    </mat-stepper>
+</div>

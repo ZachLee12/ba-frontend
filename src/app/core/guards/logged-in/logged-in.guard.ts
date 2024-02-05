@@ -7,6 +7,7 @@ export const loggedInGuard: CanActivateFn = (route, state) => {
   const router: Router = inject(Router)
 
   const decodedJwt = loginService.getDecodedJwt() as any
+
   if (decodedJwt) {
     //if Jwt is still valid, redirect user back to /dashboard/home
     if (Date.now() <= decodedJwt.exp * 1000) {

@@ -1,0 +1,23 @@
+.RequestAccountComponent {
+    height: 100%;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+
+.mat-stepper {
+    width: 500px;
+
+}
+
+.mat-stepper-vertical {
+    margin-top: 8px;
+}
+
+.mat-mdc-form-field {
+    margin-top: 16px;
+}
+
+.textarea-form-field {
+    width: 100%;
+}

@@ -8,9 +8,14 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatButtonModule } from '@angular/material/button';
 import { HttpClientModule } from '@angular/common/http';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
+import { RequestAccountComponent } from './components/request-account/request-account.component';
+import { MatStepperModule } from '@angular/material/stepper';
+import { TextFieldModule } from '@angular/cdk/text-field';
+
 @NgModule({
   declarations: [
-    LoginComponent
+    LoginComponent,
+    RequestAccountComponent
   ],
   imports: [
     CommonModule,
@@ -21,7 +26,9 @@ import { MatSnackBarModule } from '@angular/material/snack-bar';
     MatFormFieldModule,
     MatButtonModule,
     HttpClientModule,
-    MatSnackBarModule
+    MatSnackBarModule,
+    MatStepperModule,
+    TextFieldModule
   ]
 })
 export class LoginModule { }
