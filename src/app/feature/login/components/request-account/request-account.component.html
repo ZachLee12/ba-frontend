@@ -17,7 +17,7 @@
                 <ng-template matStepLabel>Pick a strong password</ng-template>
                 <mat-form-field>
                     <mat-label>Password</mat-label>
-                    <input matInput formControlName="password" required>
+                    <input matInput type="password" formControlName="password" required>
                 </mat-form-field>
                 <div>
                     <button mat-button matStepperPrevious>Back</button>
@@ -41,7 +41,18 @@
         </mat-step>
         <mat-step>
             <ng-template matStepLabel>Done</ng-template>
-            <p>You are now done.</p>
+            <div>
+                <h2>Username</h2>
+                <p>{{usernameFormGroup.value.username}}</p>
+            </div>
+            <div>
+                <h2>Password</h2>
+                <p>******</p>
+            </div>
+            <div>
+                <h2>Reason</h2>
+                <p>{{reasonFormGroup.value.reason}}</p>
+            </div>
             <div>
                 <button mat-button matStepperPrevious>Back</button>
                 <button mat-button (click)="submitForm()">Submit</button>

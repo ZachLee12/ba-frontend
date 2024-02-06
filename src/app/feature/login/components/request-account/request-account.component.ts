@@ -29,6 +29,14 @@ export class RequestAccountComponent {
     this.ngZone.onStable.pipe(take(1)).subscribe(() => this.autosize.resizeToFitContent(true));
   }
 
+  getFormValues() {
+    return {
+      ...this.usernameFormGroup.value,
+      ...this.passwordFormGroup.value,
+      ...this.reasonFormGroup.value
+    }
+  }
+
   submitForm() {
     console.log({
       ...this.usernameFormGroup.value,
