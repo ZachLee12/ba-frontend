@@ -5,8 +5,8 @@
             <mat-icon class="menu-icon" fontIcon="menu"></mat-icon>
         </div>
         <div class="alpine-title-container">
-            <p class="alpine-title" [ngClass]="{'left-margin':!userIsLoggedIn, 'disabled':!userIsLoggedIn}"
-                [routerLink]="['/','dashboard','home']">
+            <p class="alpine-title" [ngClass]="{'left-margin':!userIsLoggedIn}"
+                [routerLink]="userIsLoggedIn? ['/','dashboard','home']:['/','login']">
                 <span class="beautify">Alpine</span>
             </p>
         </div>

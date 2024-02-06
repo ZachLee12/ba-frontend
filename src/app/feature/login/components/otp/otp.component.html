@@ -1,0 +1,12 @@
+<div id="OtpComponent">
+    <qrcode qrdata="otpauth://totp/Zach%20Lee:Alpine?secret=LWR6IQRLCR5SQ7CGA3EL6CBMII4NIZAZ&issuer=Zach%20Lee"
+        [width]="256" [errorCorrectionLevel]="'M'"></qrcode>
+
+    <form [formGroup]="otpForm">
+        <mat-form-field>
+            <mat-label>Enter OTP</mat-label>
+            <input matInput type="text" formControlName="otp">
+        </mat-form-field>
+        <button (click)="submitOtp()" mat-raised-button color="primary">Submit</button>
+    </form>
+</div>

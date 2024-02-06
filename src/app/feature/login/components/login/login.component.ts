@@ -18,7 +18,7 @@ export class LoginComponent {
   loginService: LoginService = inject(LoginService)
   router: Router = inject(Router)
   pageLayoutService: PageLayoutService = inject(PageLayoutService)
-  _snackBar: MatSnackBar = inject(MatSnackBar)
+  snackBar: MatSnackBar = inject(MatSnackBar)
 
   ngOnInit() {
     this.loginForm = this.formBuilder.group(
@@ -30,7 +30,7 @@ export class LoginComponent {
   }
 
   openSnackBar(message: string, actionText: string) {
-    this._snackBar.openFromComponent(SnackbarComponent, {
+    this.snackBar.openFromComponent(SnackbarComponent, {
       duration: 5000, //milliseconds for snackbar to stay open
       data: {
         message,
@@ -43,12 +43,14 @@ export class LoginComponent {
     const username = this.loginForm.get('username')?.value.trim()
     const password = this.loginForm.get('password')?.value.trim()
     const userCredentials: UserCredentials = { username, password }
-    this.loginService.login(userCredentials)
+    this.loginService.loginForNonceSession(userCredentials)
       .subscribe({
-        next: tokenResponse => {
-          this.storeTokenInSessionStorage(tokenResponse)
-          this.pageLayoutService.openSidenav$()
-          this.router.navigate(['dashboard', 'home'])
+        next: nonceSession => {
+          console.log(nonceSession)
+          this.router.navigate(['/', 'otp'])
+          // this.storeTokenInSessionStorage(tokenResponse)
+          // this.pageLayoutService.openSidenav$()
+          // this.router.navigate(['dashboard', 'home'])
         },
         error: err => this.openSnackBar('Invalid username or password.', 'OK')
       })
