@@ -1,7 +1,7 @@
 import { Injectable, inject } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Token, UserCredentials, UserNonceSession } from 'src/app/interfaces/login.interfaces';
-import { Observable } from 'rxjs';
+import { Observable, tap } from 'rxjs';
 import * as jwt_decode from "jwt-decode";
 import { Router } from '@angular/router';
 
@@ -12,14 +12,17 @@ export class LoginService {
   private httpClient: HttpClient = inject(HttpClient)
   private router: Router = inject(Router)
 
-  constructor(
-
-  ) { }
+  currentNonce!: string
+  currentUsername!: string
 
   loginForNonceSession(userCredentials: UserCredentials): Observable<UserNonceSession> {
     const { username, password } = userCredentials
     const httpBody = { username, password }
-    return this.httpClient.post<UserNonceSession>('http://localhost:5555/token', httpBody)
+    return this.httpClient.post<UserNonceSession>('http://localhost:5555/login-otp-nonce', httpBody)
+      .pipe(tap(response => {
+        this.currentUsername = response.username
+        this.currentNonce = response.nonce
+      }))
   }
 
   logout() {
@@ -27,8 +30,9 @@ export class LoginService {
     this.router.navigate(['/login'])
   }
 
-  submitOtp(otp: string) {
-    return this.httpClient.post('http://localhost:5555/verify-otp', { otp })
+  submitOtp(otp: string): Observable<any> {
+    const otpNoncePair = { otp, username: this.currentUsername, nonce: this.currentNonce }
+    return this.httpClient.post('http://localhost:5555/verify-otp-nonce', otpNoncePair)
   }
 
   getDecodedJwt() {

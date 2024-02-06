@@ -13,3 +13,8 @@ export interface UserNonceSession {
     nonce: string,
     nonce_expiry: string
 }
+
+export interface OtpNoncePair {
+    otp: string
+    nonce: string
+}
