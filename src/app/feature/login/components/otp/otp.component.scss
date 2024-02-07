@@ -1,0 +1,16 @@
+#OtpComponent {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    width: 100%;
+}
+
+.mat-card-container {
+    width: clamp(300px, 60%, 500px);
+}
+
+.submit-btn {
+    position: relative;
+    left: 5px;
+}

@@ -13,6 +13,7 @@ import { MatStepperModule } from '@angular/material/stepper';
 import { TextFieldModule } from '@angular/cdk/text-field';
 import { OtpComponent } from './components/otp/otp.component';
 import { QRCodeModule } from 'angularx-qrcode';
+import { MatCardModule } from '@angular/material/card';
 
 @NgModule({
   declarations: [
@@ -32,7 +33,8 @@ import { QRCodeModule } from 'angularx-qrcode';
     MatSnackBarModule,
     MatStepperModule,
     TextFieldModule,
-    QRCodeModule
+    QRCodeModule,
+    MatCardModule
   ]
 })
 export class LoginModule { }
