@@ -3,6 +3,12 @@
     width: 100%;
     display: flex;
     justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+.invalid-email-hint {
+    color: red;
 }
 
 .mat-stepper {

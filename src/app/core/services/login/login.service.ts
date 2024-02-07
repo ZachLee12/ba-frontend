@@ -57,4 +57,12 @@ export class LoginService {
       sessionStorage.setItem(key, value)
     })
   }
+
+  verifyEmail(email: string): Observable<boolean> {
+    //prevent from submitting an empty string to the server
+    if (email.trim() === '') {
+      email = 'dummy-email@dummy.com'
+    }
+    return this.httpClient.get<boolean>(`http://localhost:5555/verify-email/${email}`)
+  }
 }
