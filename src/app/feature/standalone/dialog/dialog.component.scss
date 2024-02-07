@@ -1,0 +1,13 @@
+.dialog-content-container {
+    display: flex;
+    justify-content: center;
+}
+
+.dialog-actions-container {
+    display: flex;
+    justify-content: center;
+
+    button {
+        width: 100%;
+    }
+}

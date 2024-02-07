@@ -14,7 +14,8 @@ import { TextFieldModule } from '@angular/cdk/text-field';
 import { OtpComponent } from './components/otp/otp.component';
 import { QRCodeModule } from 'angularx-qrcode';
 import { MatCardModule } from '@angular/material/card';
-
+import { MatDialogModule } from '@angular/material/dialog';
+import { MatProgressBarModule } from '@angular/material/progress-bar';
 @NgModule({
   declarations: [
     LoginComponent,
@@ -34,7 +35,9 @@ import { MatCardModule } from '@angular/material/card';
     MatStepperModule,
     TextFieldModule,
     QRCodeModule,
-    MatCardModule
+    MatCardModule,
+    MatDialogModule,
+    MatProgressBarModule
   ]
 })
 export class LoginModule { }

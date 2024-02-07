@@ -48,4 +48,7 @@ export class LoginService {
     return sessionStorage.getItem('access_token') || null
   }
 
+  getQrCodeUrl(): Observable<string> {
+    return this.httpClient.get<string>('http://localhost:5555/otp-qrcode-uri')
+  }
 }

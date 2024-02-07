@@ -7,7 +7,6 @@ import { DashboardModule } from './dashboard/dashboard.module';
 
 @NgModule({
   declarations: [
-
   ],
   imports: [
     CommonModule,

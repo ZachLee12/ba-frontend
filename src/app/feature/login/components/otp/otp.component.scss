@@ -10,7 +10,34 @@
     width: clamp(300px, 60%, 500px);
 }
 
+.otp-form {
+    .otp-form-field {
+        width: 100%;
+    }
+}
+
 .submit-btn {
     position: relative;
     left: 5px;
+}
+
+.footer-text {
+    padding: 10px 15px;
+    color: gray;
+    cursor: default;
+
+    .qrcode-link {
+        text-decoration: underline;
+        cursor: pointer;
+    }
+}
+
+.mat-card-actions {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+
+    button {
+        width: 100%;
+    }
 }
