@@ -11,14 +11,11 @@
 }
 
 .otp-form {
+    margin-top: 15px;
+
     .otp-form-field {
         width: 100%;
     }
-}
-
-.submit-btn {
-    position: relative;
-    left: 5px;
 }
 
 .footer-text {
@@ -38,6 +35,6 @@
     gap: 10px;
 
     button {
-        width: 100%;
+        width: 95%;
     }
 }

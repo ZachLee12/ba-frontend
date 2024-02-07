@@ -20,7 +20,7 @@
             <button mat-button (click)="openQRCodeDialog()" color="primary">Get QR Code</button>
         </mat-card-actions>
         <mat-card-footer>
-            <mat-progress-bar mode="indeterminate"></mat-progress-bar>
+            <mat-progress-bar *ngIf="showProgressBar" mode="indeterminate"></mat-progress-bar>
         </mat-card-footer>
     </mat-card>
 </div>

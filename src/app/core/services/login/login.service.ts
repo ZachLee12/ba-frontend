@@ -30,9 +30,9 @@ export class LoginService {
     this.router.navigate(['/login'])
   }
 
-  submitOtp(otp: string): Observable<any> {
+  submitOtp(otp: string): Observable<Token> {
     const otpNoncePair = { otp, username: this.currentUsername, nonce: this.currentNonce }
-    return this.httpClient.post('http://localhost:5555/verify-otp-nonce', otpNoncePair)
+    return this.httpClient.post<Token>('http://localhost:5555/verify-otp-nonce', otpNoncePair)
   }
 
   getDecodedJwt() {
@@ -50,5 +50,11 @@ export class LoginService {
 
   getQrCodeUrl(): Observable<string> {
     return this.httpClient.get<string>('http://localhost:5555/otp-qrcode-uri')
+  }
+
+  setTokenInSessionStorage(token: Token): void {
+    Object.entries(token).forEach(([key, value]) => {
+      sessionStorage.setItem(key, value)
+    })
   }
 }

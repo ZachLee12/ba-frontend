@@ -3,7 +3,7 @@
         {{data.message}}
     </span>
     <span matSnackBarActions>
-        <button class="snackBar-btn" mat-stroked-button color="warn" matSnackBarAction
+        <button class="snackBar-btn" mat-stroked-button [color]="data.actionButtonColor" matSnackBarAction
             (click)="snackBarRef.dismissWithAction()">
             {{data.actionText}}
         </button>
