@@ -12,13 +12,18 @@ export const authGuard: CanActivateFn = (route, state) => {
     return true
   }
 
-  const { exp } = loginService.getDecodedJwt() as any
-  // If JWT expires, redirect user to '/login' and lock all routes.
-  if (Date.now() >= exp * 1000) {
-    router.navigate(['/', 'login'])
-    pageLayoutService.closeSidenav$()
-    return false
+  const decodedJwt = loginService.getDecodedJwt() as any
+  if (decodedJwt) {
+    const { exp } = loginService.getDecodedJwt() as any
+    // If JWT expires, redirect user to '/login' and lock all routes.
+    if (Date.now() >= exp * 1000) {
+      router.navigate(['/', 'login'])
+      pageLayoutService.closeSidenav$()
+      return false
+    } else {
+      return true
+    }
   } else {
-    return true;
+    return true
   }
 };
