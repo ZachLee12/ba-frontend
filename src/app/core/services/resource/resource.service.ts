@@ -17,7 +17,7 @@ export class ResourceService {
     const decodedToken = this.loginService.getDecodedJwt()
     const { username } = decodedToken as any
     return this.httpClient
-      .get<User>(`${environment.apiUrl}/database/users/username/${username}`)
+      .get<User>(`${environment.apiUrl}/users/username/${username}`)
       .pipe(map((res: any) => res.data))
   }
 

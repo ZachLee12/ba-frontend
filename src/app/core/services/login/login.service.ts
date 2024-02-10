@@ -4,6 +4,7 @@ import { Token, UserCredentials, UserNonceSession } from 'src/app/interfaces/log
 import { Observable, tap } from 'rxjs';
 import * as jwt_decode from "jwt-decode";
 import { Router } from '@angular/router';
+import { environment } from 'src/environments/environment.development';
 
 @Injectable({
   providedIn: 'root'
@@ -18,7 +19,7 @@ export class LoginService {
   loginForNonceSession(userCredentials: UserCredentials): Observable<UserNonceSession> {
     const { username, password } = userCredentials
     const httpBody = { username, password }
-    return this.httpClient.post<UserNonceSession>('http://localhost:5555/login-otp-nonce', httpBody)
+    return this.httpClient.post<UserNonceSession>(`${environment.apiUrl}/login-otp-nonce`, httpBody)
       .pipe(tap(response => {
         this.currentUsername = response.username
         this.currentNonce = response.nonce
@@ -32,7 +33,7 @@ export class LoginService {
 
   submitOtp(otp: string): Observable<Token> {
     const otpNoncePair = { otp, username: this.currentUsername, nonce: this.currentNonce }
-    return this.httpClient.post<Token>('http://localhost:5555/verify-otp-nonce', otpNoncePair)
+    return this.httpClient.post<Token>(`${environment.apiUrl}/otp/verify-otp-nonce`, otpNoncePair)
   }
 
   getDecodedJwt() {
@@ -49,7 +50,7 @@ export class LoginService {
   }
 
   getQrCodeUrl(): Observable<string> {
-    return this.httpClient.get<string>('http://localhost:5555/otp-qrcode-uri')
+    return this.httpClient.get<string>(`${environment.apiUrl}/otp/otp-qrcode-uri`)
   }
 
   setTokenInSessionStorage(token: Token): void {
@@ -63,6 +64,6 @@ export class LoginService {
     if (email.trim() === '') {
       email = 'dummy-email@dummy.com'
     }
-    return this.httpClient.get<boolean>(`http://localhost:5555/verify-email/${email}`)
+    return this.httpClient.get<boolean>(`${environment.apiUrl}/verify-email/${email}`)
   }
 }

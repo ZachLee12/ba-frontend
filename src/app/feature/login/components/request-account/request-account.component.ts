@@ -3,6 +3,8 @@ import { Component, ElementRef, NgZone, ViewChild, inject } from '@angular/core'
 import { FormBuilder, Validators } from '@angular/forms';
 import { debounce, debounceTime, distinctUntilChanged, fromEvent, switchMap, take, tap } from 'rxjs';
 import { LoginService } from 'src/app/core/services/login/login.service';
+import { UserService } from 'src/app/core/services/user/user.service';
+import { CreateUser } from 'src/app/interfaces/user.interfaces';
 
 
 @Component({
@@ -13,6 +15,8 @@ import { LoginService } from 'src/app/core/services/login/login.service';
 export class RequestAccountComponent {
   formBuild: FormBuilder = inject(FormBuilder)
   loginService: LoginService = inject(LoginService)
+  userService: UserService = inject(UserService)
+
   //for textarea autoresizing
   ngZone: NgZone = inject(NgZone)
   @ViewChild('autosize') autosize!: CdkTextareaAutosize;
@@ -20,19 +24,19 @@ export class RequestAccountComponent {
   @ViewChild('emailInpit') emailInputRef!: ElementRef;
   showProgressBar: boolean = false
   usernameFormGroup = this.formBuild.group({
-    username: ['', Validators.required],
+    username: ['leezhengyang22@gmail.com', Validators.required],
   });
   passwordFormGroup = this.formBuild.group({
-    password: ['', Validators.required],
+    password: ['somepassword', Validators.required],
   });
   reasonFormGroup = this.formBuild.group({
-    reason: ['', Validators.required],
+    reason: ['supercoolreason', Validators.required],
   });
 
   ngOnInit() {
     this.usernameFormGroup.valueChanges
       .pipe(
-        debounceTime(500),
+        debounceTime(1000),
         distinctUntilChanged(),
         tap(() => this.showProgressBar = true),
         switchMap(({ username }) => this.loginService.verifyEmail(username as string))
@@ -40,7 +44,6 @@ export class RequestAccountComponent {
       .subscribe(
         {
           next: isEmailValid => {
-            console.log(isEmailValid)
             this.showProgressBar = false
             this.isEmailValid = isEmailValid
 
@@ -67,10 +70,11 @@ export class RequestAccountComponent {
   }
 
   submitForm() {
-    console.log({
+    const newUser = {
       ...this.usernameFormGroup.value,
       ...this.passwordFormGroup.value,
       ...this.reasonFormGroup.value
-    })
+    }
+    this.userService.createUser(newUser as CreateUser).subscribe()
   }
 }
