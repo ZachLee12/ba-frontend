@@ -17,7 +17,7 @@
             <mat-icon>more_vert</mat-icon>
         </button>
         <mat-menu #menu="matMenu">
-            <button mat-menu-item>
+            <button mat-menu-item [routerLink]="['/','admin','create-user']">
                 <mat-icon>add</mat-icon>
                 <span>Create User</span>
             </button>
