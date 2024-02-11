@@ -29,12 +29,13 @@ export class LoginComponent {
     )
   }
 
-  openSnackBar(message: string, actionText: string) {
+  openSnackBar(message: string, actionText: string, actionButtonColor: 'primary' | 'accent' | 'warn') {
     this.snackBar.openFromComponent(SnackbarComponent, {
       duration: 5000, //milliseconds for snackbar to stay open
       data: {
         message,
-        actionText
+        actionText,
+        actionButtonColor
       }
     });
   }
@@ -52,7 +53,7 @@ export class LoginComponent {
           // this.pageLayoutService.openSidenav$()
           // this.router.navigate(['dashboard', 'home'])
         },
-        error: err => this.openSnackBar('Invalid username or password.', 'OK')
+        error: err => this.openSnackBar('Invalid username or password.', 'OK', 'warn')
       })
   }
 
