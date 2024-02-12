@@ -17,6 +17,7 @@ import { SharedModule } from './shared/shared.module';
 import { QRCodeModule } from 'angularx-qrcode';
 import { MatBadgeModule } from '@angular/material/badge';
 import { MatMenuModule } from '@angular/material/menu';
+import { MatTooltipModule } from '@angular/material/tooltip';
 
 @NgModule({
   declarations: [
@@ -39,7 +40,8 @@ import { MatMenuModule } from '@angular/material/menu';
     QRCodeModule,
     MatBadgeModule,
     MatMenuModule,
-    MatBadgeModule
+    MatBadgeModule,
+    MatTooltipModule
   ],
   providers: [
     {

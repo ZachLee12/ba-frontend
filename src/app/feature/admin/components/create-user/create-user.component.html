@@ -1,31 +1,50 @@
 <div id="CreateUserComponent">
     <h1>Create User</h1>
 
-    <mat-form-field>
-        <mat-label>New Username</mat-label>
-        <input type="text" matInput>
-    </mat-form-field>
+    <form class="create-user-form" [formGroup]="createUserForm">
+        <mat-form-field>
+            <mat-label>Username</mat-label>
+            <input type="text" matInput formControlName="username">
+        </mat-form-field>
+        <mat-form-field>
+            <mat-label>Password</mat-label>
+            <input type="text" matInput formControlName="password">
+        </mat-form-field>
 
-    <mat-form-field>
-        <mat-label>Password</mat-label>
-        <input type="text" matInput>
-    </mat-form-field>
-
-    <mat-form-field class="example-chip-list">
-        <mat-label>Favorite Fruits</mat-label>
-        <mat-chip-grid #chipGrid aria-label="Enter fruits">
-            <mat-chip-row *ngFor="let fruit of fruits" (removed)="remove(fruit)" [editable]="true"
-                (edited)="edit(fruit, $event)" [aria-description]="'press enter to edit ' + fruit.name">
-                {{fruit.name}}
-                <button matChipRemove [attr.aria-label]="'remove ' + fruit.name">
-                    <mat-icon>cancel</mat-icon>
-                </button>
-            </mat-chip-row>
-            <input placeholder="New fruit..." [matChipInputFor]="chipGrid"
-                [matChipInputSeparatorKeyCodes]="separatorKeysCodes" [matChipInputAddOnBlur]="addOnBlur"
-                (matChipInputTokenEnd)="add($event)" />
-        </mat-chip-grid>
-    </mat-form-field>
+        <mat-card>
+            <mat-card-header>
+                <mat-card-title>Grouped Resources</mat-card-title>
+            </mat-card-header>
+            <mat-card-content>
+                <ng-container *ngFor="let resource of getGroupedResourcesFormArray().controls; let i = index">
+                    <fieldset class="grouped-resources-fieldset">
+                        <legend>{{i+1}}</legend>
+                        <mat-card>
+                            <mat-card-header>
+                                <mat-card-title>{{resource.getRawValue()|json}}</mat-card-title>
+                                <mat-card-subtitle>{{resource.get('indicators')?.value}}</mat-card-subtitle>
+                            </mat-card-header>
+                        </mat-card>
+                        <button (click)="removeGroupedResourcesFormGroup(i)" mat-stroked-button
+                            color="warn">Remove</button>
+                    </fieldset>
+                </ng-container>
+                <mat-form-field>
+                    <mat-label>Municipality</mat-label>
+                    <input type="text" matInput #groupedMunicipalityInput>
+                </mat-form-field>
+                <mat-form-field>
+                    <mat-label>Indicators</mat-label>
+                    <input type="text" matInput #groupedIndicatorsInput>
+                </mat-form-field>
+            </mat-card-content>
+            <mat-card-actions>
+                <button (click)="addGroupedResourcesFormField()" mat-stroked-button color="primary">Add Grouped
+                    Resource</button>
+            </mat-card-actions>
+        </mat-card>
+        <button (click)="submitForm()" class="create-user-btn" mat-raised-button color="primary">Create User</button>
+    </form>
 
 
 </div>

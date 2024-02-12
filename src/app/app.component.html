@@ -2,7 +2,7 @@
     <section class="left-header-section">
         <div *ngIf="(getSidenavState$() | async) === sidenavStateEnum.opened" class="menu-icon-container"
             (click)="sidenav.toggle()">
-            <mat-icon class="menu-icon" fontIcon="menu"></mat-icon>
+            <mat-icon matTooltip="Collapse sidenav" class="menu-icon" fontIcon="menu"></mat-icon>
         </div>
         <div class="alpine-title-container">
             <p class="alpine-title" [ngClass]="{'left-margin':!userIsLoggedIn}"
@@ -14,7 +14,7 @@
     <section class="right-header-section">
 
         <ng-container *ngIf="userIsLoggedIn">
-            <button mat-icon-button [matMenuTriggerFor]="menu" aria-label="Example icon-button with a menu">
+            <button matTooltip="Menu" mat-icon-button [matMenuTriggerFor]="menu">
                 <mat-icon>more_vert</mat-icon>
             </button>
             <mat-menu #menu="matMenu">
@@ -23,8 +23,10 @@
                     <span>Create User</span>
                 </button>
             </mat-menu>
-            <button mat-icon-button>
-                <mat-icon [matBadge]="requestUserAccountCount">supervised_user_circle</mat-icon>
+            <button mat-icon-button matTooltip="{{requestUserAccountCount}} user(s) account requests">
+                <mat-icon aria-hidden="false" matBadgeSize="medium" [matBadge]="requestUserAccountCount">
+                    supervised_user_circle
+                </mat-icon>
             </button>
         </ng-container>
 
