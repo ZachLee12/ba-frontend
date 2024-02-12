@@ -86,7 +86,7 @@ export class CreateUserComponent {
     const indicatorsInput: string = this.createUngroupedResourcesForm.get('indicators')?.value
     const indicators = indicatorsInput.split(',').map(piece => piece.trim())
     const newFormGroup: FormGroup = this.formBuilder.group({
-      grouped: [true],
+      grouped: [false],
       municipality: [municipalityInput],
       indicators: this.formBuilder.array(indicators.map(indicator => this.formBuilder.control(indicator)))
     })
@@ -104,6 +104,7 @@ export class CreateUserComponent {
       password: formValue.password,
       access: [...formValue.groupedResources, ...formValue.ungroupedResources]
     }
+    console.log(createUser)
     this.userService.createUser(createUser).pipe(take(1)).subscribe(
       {
         next: message => {
