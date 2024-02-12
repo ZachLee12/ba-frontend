@@ -13,18 +13,20 @@
     </section>
     <section class="right-header-section">
 
-        <button mat-icon-button [matMenuTriggerFor]="menu" aria-label="Example icon-button with a menu">
-            <mat-icon>more_vert</mat-icon>
-        </button>
-        <mat-menu #menu="matMenu">
-            <button mat-menu-item [routerLink]="['/','admin','create-user']">
-                <mat-icon>add</mat-icon>
-                <span>Create User</span>
+        <ng-container *ngIf="userIsLoggedIn">
+            <button mat-icon-button [matMenuTriggerFor]="menu" aria-label="Example icon-button with a menu">
+                <mat-icon>more_vert</mat-icon>
             </button>
-        </mat-menu>
-        <button mat-icon-button>
-            <mat-icon>supervised_user_circle</mat-icon>
-        </button>
+            <mat-menu #menu="matMenu">
+                <button mat-menu-item [routerLink]="['/','admin','create-user']">
+                    <mat-icon>add</mat-icon>
+                    <span>Create User</span>
+                </button>
+            </mat-menu>
+            <button mat-icon-button>
+                <mat-icon matBadge="1">supervised_user_circle</mat-icon>
+            </button>
+        </ng-container>
 
     </section>
 </header>

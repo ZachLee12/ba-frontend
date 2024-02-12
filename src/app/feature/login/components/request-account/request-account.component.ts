@@ -4,7 +4,7 @@ import { FormBuilder, Validators } from '@angular/forms';
 import { debounce, debounceTime, distinctUntilChanged, fromEvent, switchMap, take, tap } from 'rxjs';
 import { LoginService } from 'src/app/core/services/login/login.service';
 import { UserService } from 'src/app/core/services/user/user.service';
-import { CreateUser } from 'src/app/interfaces/user.interfaces';
+import { RequestAccountUser } from 'src/app/interfaces/user.interfaces';
 
 
 @Component({
@@ -75,6 +75,6 @@ export class RequestAccountComponent {
       ...this.passwordFormGroup.value,
       ...this.reasonFormGroup.value
     }
-    this.userService.createUser(newUser as CreateUser).subscribe()
+    this.userService.createUser(newUser as RequestAccountUser).subscribe()
   }
 }

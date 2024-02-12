@@ -38,7 +38,8 @@ import { MatMenuModule } from '@angular/material/menu';
     MatButtonModule,
     QRCodeModule,
     MatBadgeModule,
-    MatMenuModule
+    MatMenuModule,
+    MatBadgeModule
   ],
   providers: [
     {
