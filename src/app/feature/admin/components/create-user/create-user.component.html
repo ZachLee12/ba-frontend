@@ -12,23 +12,22 @@
         </mat-form-field>
 
         <div class="mat-cards-container">
-            <mat-card class="grouped-resources-card">
+            <mat-card>
                 <mat-card-header>
                     <mat-card-title>Grouped Resources</mat-card-title>
                 </mat-card-header>
                 <mat-card-content>
                     <ng-container *ngFor="let resource of getGroupedResourcesFormArray().controls; let i = index">
-                        <fieldset>
-                            <legend>{{i+1}}</legend>
-                            <mat-card>
-                                <mat-card-header>
-                                    <mat-card-title>{{resource.get('municipality')?.value}}</mat-card-title>
-                                    <mat-card-subtitle>{{resource.get('indicators')?.value}}</mat-card-subtitle>
-                                </mat-card-header>
-                            </mat-card>
-                            <button (click)="removeGroupedResourcesFormGroup(i)" mat-stroked-button
-                                color="warn">Remove</button>
-                        </fieldset>
+                        <mat-card class="resources-card">
+                            <mat-card-header>
+                                <mat-card-title>{{i+1}}. {{resource.get('municipality')?.value}}</mat-card-title>
+                                <mat-card-subtitle>{{resource.get('indicators')?.value}}</mat-card-subtitle>
+                            </mat-card-header>
+                            <mat-card-actions>
+                                <button (click)="removeGroupedResourcesFormGroup(i)" mat-stroked-button
+                                    color="warn">Remove</button>
+                            </mat-card-actions>
+                        </mat-card>
                     </ng-container>
                     <form [formGroup]="createGroupedResourcesForm">
                         <mat-form-field>
@@ -46,23 +45,23 @@
                         Resource</button>
                 </mat-card-actions>
             </mat-card>
-            <mat-card class="ungrouped-resources-card">
+            <mat-card>
                 <mat-card-header>
                     <mat-card-title>Ungrouped Resources</mat-card-title>
                 </mat-card-header>
                 <mat-card-content>
                     <ng-container *ngFor="let resource of getUngroupedResourcesFormArray().controls; let i = index">
-                        <fieldset>
-                            <legend>{{i+1}}</legend>
-                            <mat-card>
-                                <mat-card-header>
-                                    <mat-card-title>{{resource.get('municipality')?.value}}</mat-card-title>
-                                    <mat-card-subtitle>{{resource.get('indicators')?.value}}</mat-card-subtitle>
-                                </mat-card-header>
-                            </mat-card>
-                            <button (click)="removeUngroupedResourcesFormGroup(i)" mat-stroked-button
-                                color="warn">Remove</button>
-                        </fieldset>
+
+                        <mat-card class="resources-card">
+                            <mat-card-header>
+                                <mat-card-title>{{i+1}}. {{resource.get('municipality')?.value}}</mat-card-title>
+                                <mat-card-subtitle>{{resource.get('indicators')?.value}}</mat-card-subtitle>
+                            </mat-card-header>
+                            <mat-card-actions>
+                                <button (click)="removeUngroupedResourcesFormGroup(i)" mat-stroked-button
+                                    color="warn">Remove</button>
+                            </mat-card-actions>
+                        </mat-card>
                     </ng-container>
                     <form [formGroup]="createUngroupedResourcesForm">
                         <mat-form-field>

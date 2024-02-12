@@ -13,9 +13,8 @@
     flex-direction: column;
     gap: 20px;
 
-    fieldset {
-        display: flex;
-        flex-direction: column;
+    .resources-card {
+        margin: 10px 0;
     }
 }
 
