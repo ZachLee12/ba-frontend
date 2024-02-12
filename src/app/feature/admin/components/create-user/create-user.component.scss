@@ -8,10 +8,17 @@
     flex-direction: column;
 }
 
-.grouped-resources-fieldset {
+.mat-cards-container {
     display: flex;
     flex-direction: column;
+    gap: 20px;
+
+    fieldset {
+        display: flex;
+        flex-direction: column;
+    }
 }
+
 
 .create-user-btn {
     margin: 10px 0;
