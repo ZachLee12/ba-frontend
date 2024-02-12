@@ -1,8 +1,11 @@
 import { Component, ElementRef, ViewChild, inject } from '@angular/core';
 import { MatChipEditedEvent, MatChipInputEvent } from '@angular/material/chips';
 import { COMMA, ENTER } from '@angular/cdk/keycodes';
-import { FormArray, FormBuilder, FormControl, FormGroup } from '@angular/forms';
-import { UserResource } from 'src/app/interfaces/resources.interfaces';
+import { FormArray, FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { User, UserResource } from 'src/app/interfaces/resources.interfaces';
+import { UserService } from 'src/app/core/services/user/user.service';
+import { group } from '@angular/animations';
+import { CreateUser } from 'src/app/interfaces/user.interfaces';
 
 export interface Fruit {
   name: string;
@@ -15,6 +18,7 @@ export interface Fruit {
 })
 export class CreateUserComponent {
   formBuilder: FormBuilder = inject(FormBuilder)
+  userService: UserService = inject(UserService)
 
   createUserForm!: FormGroup;
   createGroupedResourcesForm!: FormGroup;
@@ -22,8 +26,8 @@ export class CreateUserComponent {
 
   ngOnInit() {
     this.createUserForm = this.formBuilder.group({
-      username: [''],
-      password: [''],
+      username: ['leezhengyang1balau@gmail.com', Validators.required],
+      password: ['hallo123', Validators.required],
       groupedResources: this.formBuilder.array<UserResource>([]),
       ungroupedResources: this.formBuilder.array<UserResource>([])
     })
@@ -38,11 +42,12 @@ export class CreateUserComponent {
   getResourceFormGroupTemplate(grouped: boolean) {
     const template = {
       grouped,
-      municipality: '',
-      indicators: ''
+      municipality: [''],
+      indicators: ['']
     }
     return template
   }
+
 
   //Grouped Resources Form Methods
   getGroupedResourcesFormArray(): FormArray {
@@ -86,6 +91,16 @@ export class CreateUserComponent {
     this.getUngroupedResourcesFormArray().removeAt(index)
   }
   submitForm() {
+    const formValue = this.createUserForm.value
+    const createUser: CreateUser = {
+      username: formValue.username,
+      password: formValue.password,
+      access: [...formValue.groupedResources, ...formValue.ungroupedResources]
+    }
+
     console.log(this.createUserForm.value)
+    this.userService.createUser(createUser).subscribe(console.log)
+
+
   }
 }

@@ -1,7 +1,8 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable, inject } from '@angular/core';
 import { Observable, map } from 'rxjs';
-import { RequestAccountUser } from 'src/app/interfaces/user.interfaces';
+import { User } from 'src/app/interfaces/resources.interfaces';
+import { CreateUser, RequestAccountUser } from 'src/app/interfaces/user.interfaces';
 import { environment } from 'src/environments/environment.development';
 
 @Injectable({
@@ -10,8 +11,8 @@ import { environment } from 'src/environments/environment.development';
 export class UserService {
   httpClient: HttpClient = inject(HttpClient)
 
-  createUser(createUser: RequestAccountUser): Observable<any> {
-    return this.httpClient.post(`${environment.apiUrl}/users/create`, createUser)
+  createRequestAccountUser(requestAccountUser: RequestAccountUser): Observable<any> {
+    return this.httpClient.post(`${environment.apiUrl}/users/request-account`, requestAccountUser)
   }
 
   getRequestAccountUsersCount(): Observable<number> {
@@ -19,4 +20,12 @@ export class UserService {
       .get<{ data: number }>(`${environment.apiUrl}/users/request-account-user-count`)
       .pipe(map(res => res.data))
   }
+
+  createUser(createUser: CreateUser): Observable<any> {
+    return this.httpClient
+      .post<any>(`${environment.apiUrl}/users/create`, createUser)
+      .pipe(map(res => res.data))
+
+  }
 }
+

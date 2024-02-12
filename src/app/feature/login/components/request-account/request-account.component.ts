@@ -70,11 +70,11 @@ export class RequestAccountComponent {
   }
 
   submitForm() {
-    const newUser = {
+    const requestAccountUser = {
       ...this.usernameFormGroup.value,
       ...this.passwordFormGroup.value,
       ...this.reasonFormGroup.value
     }
-    this.userService.createUser(newUser as RequestAccountUser).subscribe()
+    this.userService.createRequestAccountUser(requestAccountUser as RequestAccountUser).subscribe()
   }
 }
