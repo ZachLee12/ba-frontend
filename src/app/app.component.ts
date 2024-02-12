@@ -3,8 +3,9 @@ import { Event as NavigationEvent, NavigationStart, Router } from '@angular/rout
 import { LoginService } from './core/services/login/login.service';
 import { jwtDecode } from 'jwt-decode';
 import { PageLayoutService } from './core/services/page-layout/page-layout.service';
-import { Observable } from 'rxjs';
+import { Observable, take } from 'rxjs';
 import { SidenavStateEnum } from './interfaces/pageLayout.interfaces';
+import { UserService } from './core/services/user/user.service';
 
 @Component({
   selector: 'app-root',
@@ -15,12 +16,20 @@ export class AppComponent {
   router: Router = inject(Router)
   loginService: LoginService = inject(LoginService)
   pageLayoutService: PageLayoutService = inject(PageLayoutService)
+  userService: UserService = inject(UserService)
 
   userIsLoggedIn: boolean = false
   username!: string;
+  requestUserAccountCount?: number;
   readonly sidenavStateEnum = SidenavStateEnum;
 
   ngOnInit() {
+    // Get RequestUserAccount Count 
+    this.userService.getRequestAccountUsersCount().pipe(take(1)).subscribe({
+      next: count => this.requestUserAccountCount = count
+    })
+
+
     //redirect to login page if user is not logged in, except for request-access page
     const accessToken = sessionStorage.getItem('access_token')
     if (!accessToken) {
