@@ -21,9 +21,9 @@ export class UserService {
       .pipe(map(res => res.data))
   }
 
-  createUser(createUser: CreateUser): Observable<any> {
+  createUser(createUser: CreateUser): Observable<string> {
     return this.httpClient
-      .post<any>(`${environment.apiUrl}/users/create`, createUser)
+      .post<{ data: string }>(`${environment.apiUrl}/users/create`, createUser)
       .pipe(map(res => res.data))
 
   }

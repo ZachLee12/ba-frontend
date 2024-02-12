@@ -6,6 +6,9 @@ import { User, UserResource } from 'src/app/interfaces/resources.interfaces';
 import { UserService } from 'src/app/core/services/user/user.service';
 import { group } from '@angular/animations';
 import { CreateUser } from 'src/app/interfaces/user.interfaces';
+import { MatSnackBar } from '@angular/material/snack-bar';
+import { SnackbarComponent } from 'src/app/feature/standalone/snackbar/snackbar.component';
+import { take } from 'rxjs';
 
 export interface Fruit {
   name: string;
@@ -19,6 +22,8 @@ export interface Fruit {
 export class CreateUserComponent {
   formBuilder: FormBuilder = inject(FormBuilder)
   userService: UserService = inject(UserService)
+  snackBar: MatSnackBar = inject(MatSnackBar)
+
 
   createUserForm!: FormGroup;
   createGroupedResourcesForm!: FormGroup;
@@ -64,6 +69,7 @@ export class CreateUserComponent {
       indicators: this.formBuilder.array(indicators.map(indicator => this.formBuilder.control(indicator)))
     })
     this.getGroupedResourcesFormArray().push(newFormGroup)
+    this.createGroupedResourcesForm.reset()
   }
 
   removeGroupedResourcesFormGroup(index: number) {
@@ -85,6 +91,7 @@ export class CreateUserComponent {
       indicators: this.formBuilder.array(indicators.map(indicator => this.formBuilder.control(indicator)))
     })
     this.getUngroupedResourcesFormArray().push(newFormGroup)
+    this.createUngroupedResourcesForm.reset()
   }
 
   removeUngroupedResourcesFormGroup(index: number) {
@@ -97,10 +104,29 @@ export class CreateUserComponent {
       password: formValue.password,
       access: [...formValue.groupedResources, ...formValue.ungroupedResources]
     }
-
-    console.log(this.createUserForm.value)
-    this.userService.createUser(createUser).subscribe(console.log)
-
-
+    this.userService.createUser(createUser).pipe(take(1)).subscribe(
+      {
+        next: message => {
+          this.snackBar.openFromComponent(SnackbarComponent, {
+            duration: 5000, //milliseconds
+            data: {
+              message: message,
+              actionText: 'OK',
+              actionButtonColor: 'primary'
+            }
+          })
+        },
+        error: err => {
+          this.snackBar.openFromComponent(SnackbarComponent, {
+            duration: 5000, //milliseconds
+            data: {
+              message: err.error.detail,
+              actionText: 'OK',
+              actionButtonColor: 'warn'
+            }
+          })
+        }
+      }
+    )
   }
 }
