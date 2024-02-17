@@ -14,3 +14,8 @@ export interface RequestAccountUser {
     password: string,
     reason: string
 }
+
+export interface UserEmailVerificationCode {
+    username: string,
+    verification_code: string
+}

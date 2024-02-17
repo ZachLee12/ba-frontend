@@ -32,7 +32,7 @@ export class CreateUserComponent {
 
   ngOnInit() {
     //get last element which is the username after string splitting
-    const selectedUsername = this.router.url.split('/').slice(-1)
+    const selectedUsername = this.router.url.split('/').slice(-1)[0]
     this.createUserForm = this.formBuilder.group({
       username: [selectedUsername, Validators.required],
       password: ['', Validators.required],
@@ -102,6 +102,7 @@ export class CreateUserComponent {
   }
   submitForm() {
     const formValue = this.createUserForm.value
+    // find out why username is an array??!!
     const createUser: CreateUser = {
       username: formValue.username,
       password: formValue.password,

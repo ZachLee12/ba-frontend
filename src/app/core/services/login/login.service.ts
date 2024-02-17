@@ -5,6 +5,7 @@ import { Observable, tap } from 'rxjs';
 import * as jwt_decode from "jwt-decode";
 import { Router } from '@angular/router';
 import { environment } from 'src/environments/environment.development';
+import { UserEmailVerificationCode } from 'src/app/interfaces/user.interfaces';
 
 @Injectable({
   providedIn: 'root'
@@ -65,5 +66,13 @@ export class LoginService {
       email = 'dummy-email@dummy.com'
     }
     return this.httpClient.get<boolean>(`${environment.apiUrl}/verify-email/${email}`)
+  }
+
+  verifyEmailVerificationCode(username: string, verificationCode: string) {
+    const body: UserEmailVerificationCode = {
+      username,
+      verification_code: verificationCode
+    }
+    return this.httpClient.post(`${environment.apiUrl}/verify-email-with-verification-code`, body)
   }
 }

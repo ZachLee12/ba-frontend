@@ -53,7 +53,10 @@ export class LoginComponent {
           // this.pageLayoutService.openSidenav$()
           // this.router.navigate(['dashboard', 'home'])
         },
-        error: err => this.openSnackBar('Invalid username or password.', 'OK', 'warn')
+        error: err => {
+          console.error(err)
+          this.openSnackBar(err.error.detail, 'OK', 'warn')
+        }
       })
   }
 

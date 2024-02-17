@@ -24,3 +24,9 @@
 .form-footer-text {
     margin-top: 20px;
 }
+
+.action-btns-container {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}

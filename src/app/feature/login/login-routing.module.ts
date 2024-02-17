@@ -4,6 +4,7 @@ import { LoginComponent } from './components/login/login.component';
 import { loggedInGuard } from 'src/app/core/guards/logged-in/logged-in.guard';
 import { RequestAccountComponent } from './components/request-account/request-account.component';
 import { OtpComponent } from './components/otp/otp.component';
+import { VerifyEmailComponent } from './components/verify-email/verify-email.component';
 
 const routes: Routes = [
     {
@@ -18,6 +19,10 @@ const routes: Routes = [
     {
         path: 'request-account',
         component: RequestAccountComponent
+    },
+    {
+        path: 'verify-email',
+        component: VerifyEmailComponent
     }
 ];
 

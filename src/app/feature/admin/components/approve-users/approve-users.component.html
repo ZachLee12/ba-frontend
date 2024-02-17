@@ -6,8 +6,9 @@
             <ng-container *ngIf="columnName !=='actions'; else actionsColumn">
                 <th mat-header-cell class="vertical-divider" *matHeaderCellDef>{{columnName}}</th>
                 <td mat-cell class="vertical-divider" *matCellDef="let element">
-                    <span [matBadgeHidden]="columnName !== 'username' && !element['is_verified']" matBadge="!"
-                        matBadgePosition="above before" matBadgeSize="small" matBadgeColor="warn">
+                    <span
+                        [matBadgeHidden]="(columnName !== 'username' && !element['is_verified']|| element['is_verified'])"
+                        matBadge="!" matBadgePosition="above before" matBadgeSize="small" matBadgeColor="warn">
                     </span>
                     <span matTooltip="user has not verified their email"
                         [matTooltipDisabled]="columnName !=='username' && !element['is_verified']"

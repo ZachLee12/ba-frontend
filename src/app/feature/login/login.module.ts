@@ -16,11 +16,13 @@ import { QRCodeModule } from 'angularx-qrcode';
 import { MatCardModule } from '@angular/material/card';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatProgressBarModule } from '@angular/material/progress-bar';
+import { VerifyEmailComponent } from './components/verify-email/verify-email.component';
 @NgModule({
   declarations: [
     LoginComponent,
     RequestAccountComponent,
-    OtpComponent
+    OtpComponent,
+    VerifyEmailComponent
   ],
   imports: [
     CommonModule,
