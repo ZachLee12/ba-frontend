@@ -18,16 +18,12 @@
                 <mat-icon>more_vert</mat-icon>
             </button>
             <mat-menu #menu="matMenu">
-                <button mat-menu-item [routerLink]="['/','admin','create-user']">
-                    <mat-icon>add</mat-icon>
-                    <span>Create User</span>
+                <button mat-menu-item [routerLink]="['/','admin','approve-users']">
+                    <mat-icon matBadgeSize="small" [matBadge]="requestUserAccountCount"
+                        aria-hidden="false">checklist_rtl</mat-icon>
+                    <span>Approve Users</span>
                 </button>
             </mat-menu>
-            <button mat-icon-button matTooltip="{{requestUserAccountCount}} user(s) account requests">
-                <mat-icon aria-hidden="false" matBadgeSize="medium" [matBadge]="requestUserAccountCount">
-                    supervised_user_circle
-                </mat-icon>
-            </button>
         </ng-container>
 
     </section>

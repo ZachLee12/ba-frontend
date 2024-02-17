@@ -10,10 +10,14 @@ import { MatIconModule } from '@angular/material/icon';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
-
+import { ApproveUsersComponent } from './components/approve-users/approve-users.component';
+import { MatListModule } from '@angular/material/list';
+import { MatDividerModule } from '@angular/material/divider';
+import { MatTableModule } from '@angular/material/table';
+import { MatTooltipModule } from '@angular/material/tooltip';
 
 @NgModule({
-  declarations: [AdminComponent, CreateUserComponent],
+  declarations: [AdminComponent, CreateUserComponent, ApproveUsersComponent],
   imports: [
     CommonModule,
     AdminRoutingModule,
@@ -24,7 +28,11 @@ import { MatCardModule } from '@angular/material/card';
     FormsModule,
     ReactiveFormsModule,
     MatButtonModule,
-    MatCardModule
+    MatCardModule,
+    MatListModule,
+    MatDividerModule,
+    MatTableModule,
+    MatTooltipModule
   ]
 })
 export class AdminModule { }

@@ -4,9 +4,6 @@
             <mat-card-title>One Time Password</mat-card-title>
             <mat-card-subtitle>Please enter your one time password from your authenticator app.</mat-card-subtitle>
         </mat-card-header>
-        <!-- <qrcode qrdata="otpauth://totp/Zach%20Lee:Alpine?secret=LWR6IQRLCR5SQ7CGA3EL6CBMII4NIZAZ&issuer=Zach%20Lee"
-            [width]="256" [errorCorrectionLevel]="'M'"></qrcode> -->
-
         <mat-card-content>
             <form [formGroup]="otpForm" class="otp-form">
                 <mat-form-field class="otp-form-field">
@@ -16,7 +13,8 @@
             </form>
         </mat-card-content>
         <mat-card-actions class="mat-card-actions">
-            <button class="submit-btn" (click)="submitOtp()" mat-raised-button color="primary">Submit</button>
+            <button class="submit-btn" type="submit" (click)="submitOtp()" mat-raised-button
+                color="primary">Submit</button>
             <button mat-button (click)="openQRCodeDialog()" color="primary">Get QR Code</button>
         </mat-card-actions>
         <mat-card-footer>

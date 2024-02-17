@@ -1,0 +1,25 @@
+<div id="ApproveUsersComponent">
+    <h1>Approve Users</h1>
+    <table mat-table *ngIf="dataSource.length > 0" [dataSource]="dataSource">
+
+        <ng-container *ngFor="let columnName of columnNamesToDisplay" [matColumnDef]="columnName">
+            <ng-container *ngIf="columnName !=='actions'; else actionsColumn">
+                <th mat-header-cell class="vertical-divider" *matHeaderCellDef>{{columnName}}</th>
+                <td mat-cell class="vertical-divider" *matCellDef="let element">{{element[columnName]}}</td>
+                <mat-divider></mat-divider>
+            </ng-container>
+            <ng-template #actionsColumn>
+                <th mat-header-cell class="vertical-divider" *matHeaderCellDef>{{columnName}}</th>
+                <td mat-cell class="vertical-divider" *matCellDef="let element">
+                    <button mat-button color="primary" matTooltip="Approve user and assign resources"
+                        [routerLink]="['/','admin','create-user',element['username']]">Inspect</button>
+                    <button mat-button color="warn" matTooltip="Deny user request for an SRL account">Deny</button>
+                </td>
+                <mat-divider></mat-divider>
+            </ng-template>
+        </ng-container>
+
+        <tr mat-header-row *matHeaderRowDef="columnNamesToDisplay"></tr>
+        <tr mat-row *matRowDef="let row; columns: columnNamesToDisplay;">
+    </table>
+</div>

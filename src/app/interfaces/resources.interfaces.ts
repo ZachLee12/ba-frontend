@@ -8,3 +8,9 @@ export interface User {
     username: string,
     access: UserResource[]
 }
+
+export interface EmailVerification {
+    username: string,
+    verification_code: string,
+    is_verified: boolean
+}

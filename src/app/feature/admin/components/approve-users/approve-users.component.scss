@@ -1,0 +1,14 @@
+.list-item {
+    display: flex;
+    justify-content: space-between;
+}
+
+/* Add this to your component's CSS */
+.vertical-divider {
+    border-right: 1px solid #e0e0e0;
+    /* Your preferred color for the divider */
+}
+
+.mat-column-actions {
+    width: 15% !important;
+}
