@@ -9,6 +9,7 @@ import { CreateUser } from 'src/app/interfaces/user.interfaces';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { SnackbarComponent } from 'src/app/feature/standalone/snackbar/snackbar.component';
 import { take } from 'rxjs';
+import { ActivatedRoute, Router } from '@angular/router';
 
 export interface Fruit {
   name: string;
@@ -23,16 +24,18 @@ export class CreateUserComponent {
   formBuilder: FormBuilder = inject(FormBuilder)
   userService: UserService = inject(UserService)
   snackBar: MatSnackBar = inject(MatSnackBar)
-
+  router: Router = inject(Router)
 
   createUserForm!: FormGroup;
   createGroupedResourcesForm!: FormGroup;
   createUngroupedResourcesForm!: FormGroup;
 
   ngOnInit() {
+    //get last element which is the username after string splitting
+    const selectedUsername = this.router.url.split('/').slice(-1)
     this.createUserForm = this.formBuilder.group({
-      username: ['leezhengyang1balau@gmail.com', Validators.required],
-      password: ['hallo123', Validators.required],
+      username: [selectedUsername, Validators.required],
+      password: ['', Validators.required],
       groupedResources: this.formBuilder.array<UserResource>([]),
       ungroupedResources: this.formBuilder.array<UserResource>([])
     })

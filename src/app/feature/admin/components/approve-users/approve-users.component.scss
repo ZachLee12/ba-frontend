@@ -1,3 +1,12 @@
+th {
+    text-align: center
+}
+
+.cell-with-badge {
+    position: relative;
+    top: 6px;
+}
+
 .list-item {
     display: flex;
     justify-content: space-between;
