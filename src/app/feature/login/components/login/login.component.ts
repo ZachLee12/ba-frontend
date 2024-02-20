@@ -31,7 +31,7 @@ export class LoginComponent {
 
   openSnackBar(message: string, actionText: string, actionButtonColor: 'primary' | 'accent' | 'warn') {
     this.snackBar.openFromComponent(SnackbarComponent, {
-      duration: 5000, //milliseconds for snackbar to stay open
+      duration: 1000000000000000, //milliseconds for snackbar to stay open
       data: {
         message,
         actionText,

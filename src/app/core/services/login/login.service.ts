@@ -60,19 +60,12 @@ export class LoginService {
     })
   }
 
-  verifyEmail(email: string): Observable<boolean> {
-    //prevent from submitting an empty string to the server
-    if (email.trim() === '') {
-      email = 'dummy-email@dummy.com'
-    }
-    return this.httpClient.get<boolean>(`${environment.apiUrl}/verify-email/${email}`)
-  }
 
   verifyEmailVerificationCode(username: string, verificationCode: string) {
     const body: UserEmailVerificationCode = {
       username,
       verification_code: verificationCode
     }
-    return this.httpClient.post(`${environment.apiUrl}/verify-email-with-verification-code`, body)
+    return this.httpClient.post(`${environment.apiUrl}/verify-email/verification-code`, body)
   }
 }
