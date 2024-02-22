@@ -1,10 +1,6 @@
 import { Component, inject } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { MatSnackBar } from '@angular/material/snack-bar';
-import { Router } from '@angular/router';
-import { take } from 'rxjs';
 import { LoginService } from 'src/app/core/services/login/login.service';
-import { SnackbarComponent } from 'src/app/feature/standalone/snackbar/snackbar.component';
 import { UserEmailVerificationCode } from 'src/app/interfaces/user.interfaces';
 
 @Component({
@@ -15,14 +11,12 @@ import { UserEmailVerificationCode } from 'src/app/interfaces/user.interfaces';
 export class VerifyEmailComponent {
   formBuilder: FormBuilder = inject(FormBuilder)
   loginService: LoginService = inject(LoginService)
-  snackBar: MatSnackBar = inject(MatSnackBar)
-  router: Router = inject(Router)
   verifyEmailForm!: FormGroup;
 
   ngOnInit() {
     this.verifyEmailForm = this.formBuilder.group({
-      username: ['', Validators.required],
-      verificationCode: ['', Validators.required]
+      username: ['enrico.bissig@gmail.com', Validators.required],
+      verificationCode: ['P1WMW0', Validators.required]
     })
   }
 
@@ -30,30 +24,7 @@ export class VerifyEmailComponent {
     const username = this.verifyEmailForm.get('username')?.value
     const verificationCode = this.verifyEmailForm.get('verificationCode')?.value
     this.loginService.verifyEmailVerificationCode(username, verificationCode)
-      .pipe(take(1))
-      .subscribe(
-        {
-          next: res => {
-            const snackBarData = {
-              message: 'Successfully verified email! The SRL Admin will enable your account shortly.',
-              actionText: 'Super!',
-              actionButtonColor: 'primary'
-            }
-            this.openSnackBar(snackBarData)
-          },
-          error: err => {
-            const snackBarData = {
-              message: err.error.detail,
-              actionText: 'OK',
-              actionButtonColor: 'warn'
-            }
-            this.openSnackBar(snackBarData)
-          }
-        }
-      )
+      .subscribe()
   }
 
-  openSnackBar(data: { message: string, actionText: string, actionButtonColor: string }) {
-    this.snackBar.openFromComponent(SnackbarComponent, { data })
-  }
 }

@@ -11,7 +11,7 @@
                         matBadge="!" matBadgePosition="above before" matBadgeSize="small" matBadgeColor="warn">
                     </span>
                     <span matTooltip="user has not verified their email"
-                        [matTooltipDisabled]="columnName !=='username' || element['is_verified']"
+                        [matTooltipDisabled]="columnName !=='username' && !element['is_verified']"
                         [ngClass]="{'cell-with-badge': columnName==='username' && !element['is_verified']}">
                         {{element[columnName]}}
                     </span>
