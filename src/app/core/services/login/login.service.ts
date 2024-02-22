@@ -13,7 +13,7 @@ import { UserEmailVerificationCode } from 'src/app/interfaces/user.interfaces';
 export class LoginService {
   private httpClient: HttpClient = inject(HttpClient)
   private router: Router = inject(Router)
-
+  // testinggg git
   currentNonce!: string
   currentUsername!: string
 
