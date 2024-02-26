@@ -1,9 +1,11 @@
 import { CdkTextareaAutosize } from '@angular/cdk/text-field';
 import { Component, ElementRef, NgZone, ViewChild, inject } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
+import { MatSnackBar } from '@angular/material/snack-bar';
 import { debounce, debounceTime, distinctUntilChanged, fromEvent, switchMap, take, tap } from 'rxjs';
 import { LoginService } from 'src/app/core/services/login/login.service';
 import { UserService } from 'src/app/core/services/user/user.service';
+import { SnackbarComponent } from 'src/app/feature/standalone/snackbar/snackbar.component';
 import { RequestAccountUser } from 'src/app/interfaces/user.interfaces';
 
 
@@ -16,6 +18,7 @@ export class RequestAccountComponent {
   formBuild: FormBuilder = inject(FormBuilder)
   loginService: LoginService = inject(LoginService)
   userService: UserService = inject(UserService)
+  snackBar: MatSnackBar = inject(MatSnackBar)
 
   //for textarea autoresizing
   ngZone: NgZone = inject(NgZone)
@@ -25,9 +28,6 @@ export class RequestAccountComponent {
   showProgressBar: boolean = false
   usernameFormGroup = this.formBuild.group({
     username: ['leezhengyang22@gmail.com', Validators.required],
-  });
-  passwordFormGroup = this.formBuild.group({
-    password: ['somepassword', Validators.required],
   });
   reasonFormGroup = this.formBuild.group({
     reason: ['supercoolreason', Validators.required],
@@ -64,7 +64,6 @@ export class RequestAccountComponent {
   getFormValues() {
     return {
       ...this.usernameFormGroup.value,
-      ...this.passwordFormGroup.value,
       ...this.reasonFormGroup.value
     }
   }
@@ -72,9 +71,31 @@ export class RequestAccountComponent {
   submitForm() {
     const requestAccountUser = {
       ...this.usernameFormGroup.value,
-      ...this.passwordFormGroup.value,
       ...this.reasonFormGroup.value
     }
-    this.userService.createRequestAccountUser(requestAccountUser as RequestAccountUser).subscribe()
+    this.userService.createRequestAccountUser(requestAccountUser as RequestAccountUser)
+      .pipe(take(1))
+      .subscribe(
+        {
+          next: response => {
+            this.snackBar.openFromComponent(SnackbarComponent, {
+              data: {
+                message: `Successfully requested an account for ${this.usernameFormGroup.value.username}`,
+                actionText: 'Yay!',
+                actionButtonColor: 'primary'
+              }
+            })
+          },
+          error: res => {
+            this.snackBar.openFromComponent(SnackbarComponent, {
+              data: {
+                message: res.error.detail,
+                actionText: 'OK',
+                actionButtonColor: 'warn'
+              }
+            })
+          }
+        }
+      )
   }
 }

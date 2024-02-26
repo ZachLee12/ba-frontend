@@ -1,3 +1,4 @@
+<button mat-stroked-button [routerLink]="['/','login']">Back to Login</button>
 <div class="RequestAccountComponent">
     <h1>Request Account</h1>
     <mat-stepper class="mat-stepper" orientation="vertical" linear="true" #stepper>
@@ -16,19 +17,6 @@
                 </mat-form-field>
                 <mat-progress-bar *ngIf="showProgressBar" mode="indeterminate"></mat-progress-bar>
                 <div>
-                    <button mat-button matStepperNext>Next</button>
-                </div>
-            </form>
-        </mat-step>
-        <mat-step [stepControl]="passwordFormGroup">
-            <form [formGroup]="passwordFormGroup">
-                <ng-template matStepLabel>Pick a strong password</ng-template>
-                <mat-form-field>
-                    <mat-label>Password</mat-label>
-                    <input matInput type="password" formControlName="password" required>
-                </mat-form-field>
-                <div>
-                    <button mat-button matStepperPrevious>Back</button>
                     <button mat-button matStepperNext>Next</button>
                 </div>
             </form>
