@@ -1,7 +1,7 @@
 import { Component, inject } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatSnackBar } from '@angular/material/snack-bar';
-import { response } from 'express';
+import { Router } from '@angular/router';
 import { take } from 'rxjs';
 import { LoginService } from 'src/app/core/services/login/login.service';
 import { SnackbarComponent } from 'src/app/feature/standalone/snackbar/snackbar.component';
@@ -15,6 +15,7 @@ export class VerifyEmailComponent {
   formBuilder: FormBuilder = inject(FormBuilder)
   loginService: LoginService = inject(LoginService)
   snackBar: MatSnackBar = inject(MatSnackBar)
+  router: Router = inject(Router)
   verifyEmailForm!: FormGroup;
 
   ngOnInit() {
@@ -35,10 +36,11 @@ export class VerifyEmailComponent {
             this.snackBar.openFromComponent(SnackbarComponent, {
               data: {
                 message: 'Successfuly verified email!',
-                actionText: 'yahoo!',
+                actionText: 'hooray!',
                 actionButtonColor: 'primary'
               }
             })
+            this.router.navigate(['/', 'login'])
           },
           error: response => {
             this.snackBar.openFromComponent(SnackbarComponent, {

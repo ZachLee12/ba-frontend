@@ -61,7 +61,6 @@ export class OtpComponent {
           this.showProgressBar = false
           this.otpForm.get('otp')?.setErrors({ invalid: true })
           this.snackBar.openFromComponent(SnackbarComponent, {
-            duration: 5000, //milliseconds
             data: {
               message: err.error.detail,
               actionText: 'OK',
