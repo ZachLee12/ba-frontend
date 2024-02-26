@@ -73,6 +73,6 @@ export class LoginService {
       username,
       verification_code: verificationCode
     }
-    return this.httpClient.post(`${environment.apiUrl}/verify-email-with-verification-code`, body)
+    return this.httpClient.post(`${environment.apiUrl}/verify-email/verify-email-with-verification-code`, body)
   }
 }
