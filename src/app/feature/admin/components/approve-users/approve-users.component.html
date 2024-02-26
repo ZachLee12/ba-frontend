@@ -1,7 +1,6 @@
 <div id="ApproveUsersComponent">
     <h1>Approve Users</h1>
     <table mat-table *ngIf="dataSource.length > 0" [dataSource]="dataSource">
-
         <ng-container *ngFor="let columnName of columnNamesToDisplay" [matColumnDef]="columnName">
             <ng-container *ngIf="columnName !=='actions'; else actionsColumn">
                 <th mat-header-cell class="vertical-divider" *matHeaderCellDef>{{columnName}}</th>
@@ -21,9 +20,12 @@
             <ng-template #actionsColumn>
                 <th mat-header-cell class="vertical-divider" *matHeaderCellDef>{{columnName}}</th>
                 <td mat-cell class="vertical-divider" *matCellDef="let element">
-                    <button mat-button color="primary" matTooltip="Approve user and assign resources"
+                    <button mat-button [disabled]="element['is_verified'] === 'N/A'" color="primary"
+                        matTooltip="Approve user and assign resources"
                         [routerLink]="['/','admin','create-user',element['username']]">Inspect</button>
-                    <button mat-button color="warn" matTooltip="Deny user request for an SRL account">Deny</button>
+                    <button [disabled]="element['is_verified'] === 'N/A'"
+                        (click)="rejectUserAccountRequest(element['username'])" mat-button color="warn"
+                        matTooltip="Reject user and delete this account request">Reject</button>
                 </td>
                 <mat-divider></mat-divider>
             </ng-template>

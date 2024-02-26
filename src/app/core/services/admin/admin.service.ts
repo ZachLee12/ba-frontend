@@ -14,4 +14,9 @@ export class AdminService {
     return this.httpClient.get<{ data: EmailVerification[] }>(`${environment.apiUrl}/database/email-verifications`)
       .pipe(map(res => res.data))
   }
+
+  rejectUserAccountRequest(username: string): Observable<boolean> {
+    return this.httpClient.delete<{ data: boolean }>(`${environment.apiUrl}/verify-email/delete-user-email-verification/${username}`)
+      .pipe(map(res => res.data))
+  }
 }
