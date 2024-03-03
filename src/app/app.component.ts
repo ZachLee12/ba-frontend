@@ -24,12 +24,6 @@ export class AppComponent {
   readonly sidenavStateEnum = SidenavStateEnum;
 
   ngOnInit() {
-    // Get RequestUserAccount Count 
-    this.userService.getRequestAccountUsersCount().pipe(take(1)).subscribe({
-      next: count => this.requestUserAccountCount = count
-    })
-
-
     //redirect to login page if user is not logged in, except for request-access page
     const accessToken = sessionStorage.getItem('access_token')
     if (!accessToken) {
@@ -47,6 +41,10 @@ export class AppComponent {
             this.userIsLoggedIn = sessionStorage.getItem('access_token') ? true : false
             if (this.userIsLoggedIn) {
               this.updateUsernameBasedOnToken()
+              // Get RequestUserAccount Count 
+              this.userService.getRequestAccountUsersCount().pipe(take(1)).subscribe({
+                next: count => this.requestUserAccountCount = count
+              })
             }
           }
         }

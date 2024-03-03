@@ -24,36 +24,36 @@ export class RequestAccountComponent {
   ngZone: NgZone = inject(NgZone)
   @ViewChild('autosize') autosize!: CdkTextareaAutosize;
   isEmailValid: boolean = false
-  @ViewChild('emailInpit') emailInputRef!: ElementRef;
+  @ViewChild('emailInput') emailInputRef!: ElementRef;
   showProgressBar: boolean = false
   usernameFormGroup = this.formBuild.group({
-    username: ['leezhengyang22@gmail.com', Validators.required],
+    username: ['leezhengyang22@gmail.com'],
   });
   reasonFormGroup = this.formBuild.group({
     reason: ['supercoolreason', Validators.required],
   });
 
   ngOnInit() {
-    this.usernameFormGroup.valueChanges
-      .pipe(
-        debounceTime(1000),
-        distinctUntilChanged(),
-        tap(() => this.showProgressBar = true),
-        switchMap(({ username }) => this.loginService.verifyEmail(username as string))
-      )
-      .subscribe(
-        {
-          next: isEmailValid => {
-            this.showProgressBar = false
-            this.isEmailValid = isEmailValid
+    // this.usernameFormGroup.valueChanges
+    //   .pipe(
+    //     debounceTime(1000),
+    //     distinctUntilChanged(),
+    //     tap(() => this.showProgressBar = true),
+    //     switchMap(({ username }) => this.loginService.verifyEmail(username as string))
+    //   )
+    //   .subscribe(
+    //     {
+    //       next: isEmailValid => {
+    //         this.showProgressBar = false
+    //         this.isEmailValid = isEmailValid
 
-            //very troublesome way to trigger mat-error on invalid email... find another way
-            if (!isEmailValid) {
-              this.usernameFormGroup.get('username')?.setErrors({ invalid: true })
-            }
-          }
-        }
-      )
+    //         //very troublesome way to trigger mat-error on invalid email... find another way
+    //         if (!isEmailValid) {
+    //           this.usernameFormGroup.get('username')?.setErrors({ invalid: true })
+    //         }
+    //       }
+    //     }
+    //   )
   }
 
   triggerResize() {

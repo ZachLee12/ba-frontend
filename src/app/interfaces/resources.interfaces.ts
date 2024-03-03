@@ -1,12 +1,14 @@
 export interface UserResource {
+    username: string,
     municipality: string,
-    grouped: boolean,
+    is_grouped_indicators: boolean,
     indicators: any[]
 }
 
 export interface User {
     username: string,
-    access: UserResource[]
+    password: string,
+    resources: UserResource[]
 }
 
 export interface EmailVerification {

@@ -1,9 +1,4 @@
-import { UserResource } from "./resources.interfaces";
-
-export interface User {
-    username: string,
-    access: UserResource[]
-}
+import { User } from "./resources.interfaces"
 
 export interface CreateUser extends User {
     password: string

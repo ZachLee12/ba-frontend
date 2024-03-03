@@ -1,6 +1,6 @@
 import { Component, inject } from '@angular/core';
 import { ResourceService } from 'src/app/core/services/resource/resource.service';
-import { User, UserResource } from 'src/app/interfaces/resources.interfaces';
+import { User } from 'src/app/interfaces/resources.interfaces';
 
 
 @Component({
@@ -14,11 +14,11 @@ export class HomeComponent {
   user!: User;
 
   ngOnInit() {
-    this.getUser()
+    this.getUserResources()
   }
 
 
-  getUser() {
+  getUserResources() {
     this.resourceService.getUserResources()
       .subscribe({
         next: data => {

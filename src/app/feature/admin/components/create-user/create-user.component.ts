@@ -49,7 +49,7 @@ export class CreateUserComponent {
 
   getResourceFormGroupTemplate(grouped: boolean) {
     const template = {
-      grouped,
+      is_grouped_indicators: grouped,
       municipality: [''],
       indicators: ['']
     }
@@ -67,7 +67,7 @@ export class CreateUserComponent {
     const indicatorsInput: string = this.createGroupedResourcesForm.get('indicators')?.value
     const indicators = indicatorsInput.split(',').map(piece => piece.trim())
     const newFormGroup: FormGroup = this.formBuilder.group({
-      grouped: [true],
+      is_grouped_indicators: [true],
       municipality: [municipalityInput],
       indicators: this.formBuilder.array(indicators.map(indicator => this.formBuilder.control(indicator)))
     })
@@ -102,11 +102,11 @@ export class CreateUserComponent {
   }
   submitForm() {
     const formValue = this.createUserForm.value
-    // find out why username is an array??!!
+
     const createUser: CreateUser = {
       username: formValue.username,
       password: formValue.password,
-      access: [...formValue.groupedResources, ...formValue.ungroupedResources]
+      resources: [...formValue.groupedResources, ...formValue.ungroupedResources]
     }
     console.log(createUser)
     this.userService.createUser(createUser).pipe(take(1)).subscribe(
