@@ -1,10 +1,7 @@
-import { Component, ElementRef, ViewChild, inject } from '@angular/core';
-import { MatChipEditedEvent, MatChipInputEvent } from '@angular/material/chips';
-import { COMMA, ENTER } from '@angular/cdk/keycodes';
-import { FormArray, FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
-import { User, UserResource } from 'src/app/interfaces/resources.interfaces';
+import { Component, inject } from '@angular/core';
+import { FormArray, FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { UserResource } from 'src/app/interfaces/resources.interfaces';
 import { UserService } from 'src/app/core/services/user/user.service';
-import { group } from '@angular/animations';
 import { CreateUser } from 'src/app/interfaces/user.interfaces';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { SnackbarComponent } from 'src/app/feature/standalone/snackbar/snackbar.component';
@@ -29,12 +26,13 @@ export class CreateUserComponent {
   createUserForm!: FormGroup;
   createGroupedResourcesForm!: FormGroup;
   createUngroupedResourcesForm!: FormGroup;
+  selectedUsername: string = ''
 
   ngOnInit() {
     //get last element which is the username after string splitting
-    const selectedUsername = this.router.url.split('/').slice(-1)[0]
+    this.selectedUsername = this.router.url.split('/').slice(-1)[0]
     this.createUserForm = this.formBuilder.group({
-      username: [selectedUsername, Validators.required],
+      username: [this.selectedUsername, Validators.required],
       password: ['', Validators.required],
       groupedResources: this.formBuilder.array<UserResource>([]),
       ungroupedResources: this.formBuilder.array<UserResource>([])
@@ -108,7 +106,7 @@ export class CreateUserComponent {
       password: formValue.password,
       resources: [...formValue.groupedResources, ...formValue.ungroupedResources]
     }
-    console.log(createUser)
+
     this.userService.createUser(createUser).pipe(take(1)).subscribe(
       {
         next: message => {

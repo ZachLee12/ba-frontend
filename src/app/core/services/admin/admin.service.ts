@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable, inject } from '@angular/core';
 import { Observable, map } from 'rxjs';
-import { EmailVerification } from 'src/app/interfaces/resources.interfaces';
+import { EmailVerification, User } from 'src/app/interfaces/resources.interfaces';
 import { environment } from 'src/environments/environment.development';
 
 @Injectable({
@@ -17,6 +17,11 @@ export class AdminService {
 
   rejectUserAccountRequest(username: string): Observable<boolean> {
     return this.httpClient.delete<{ data: boolean }>(`${environment.apiUrl}/verify-email/delete-user-email-verification/${username}`)
+      .pipe(map(res => res.data))
+  }
+
+  getAllUsers(): Observable<any[]> {
+    return this.httpClient.get<{ data: EmailVerification[] }>(`${environment.apiUrl}/users`)
       .pipe(map(res => res.data))
   }
 }

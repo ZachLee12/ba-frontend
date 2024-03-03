@@ -11,6 +11,7 @@ export interface User {
     resources: UserResource[]
 }
 
+
 export interface EmailVerification {
     username: string,
     verification_code: string,

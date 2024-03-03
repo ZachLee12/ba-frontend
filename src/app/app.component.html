@@ -20,7 +20,7 @@
             <mat-menu #menu="matMenu">
                 <button mat-menu-item [routerLink]="['/','admin','approve-users']">
                     <mat-icon matBadgeSize="small" [matBadge]="requestUserAccountCount"
-                        aria-hidden="false">checklist_rtl</mat-icon>
+                        [matBadgeHidden]="requestUserAccountCount === 0" aria-hidden="false">checklist_rtl</mat-icon>
                     <span>Approve Users</span>
                 </button>
             </mat-menu>

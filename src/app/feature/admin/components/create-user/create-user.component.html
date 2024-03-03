@@ -1,6 +1,6 @@
 <button mat-stroked-button [routerLink]="['/','admin','approve-users']">Back</button>
 <div id="CreateUserComponent">
-    <h1>Create User</h1>
+    <h1>Create User {{selectedUsername}}</h1>
 
     <form class="create-user-form" [formGroup]="createUserForm">
         <mat-form-field>
