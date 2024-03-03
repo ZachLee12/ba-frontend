@@ -3,7 +3,7 @@ import { Injectable, inject } from '@angular/core';
 import { Observable, map, tap } from 'rxjs';
 import { LoginService } from '../login/login.service';
 import { environment } from 'src/environments/environment.development';
-import { User } from 'src/app/interfaces/resources.interfaces';
+import { User, UserResource } from 'src/app/interfaces/resources.interfaces';
 
 
 @Injectable({
@@ -13,11 +13,11 @@ export class ResourceService {
   httpClient: HttpClient = inject(HttpClient)
   loginService: LoginService = inject(LoginService)
 
-  getUserResources(): Observable<User> {
+  getUserResources(): Observable<UserResource[]> {
     const decodedToken = this.loginService.getDecodedJwt()
     const { username } = decodedToken as any
     return this.httpClient
-      .get<User>(`${environment.apiUrl}/users/username/${username}`)
+      .get<{ data: UserResource[] }>(`${environment.apiUrl}/users/username/${username}/resources`)
       .pipe(map((res: any) => res.data))
   }
 

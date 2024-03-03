@@ -1,6 +1,7 @@
 import { Component, inject } from '@angular/core';
+import { take } from 'rxjs';
 import { ResourceService } from 'src/app/core/services/resource/resource.service';
-import { User } from 'src/app/interfaces/resources.interfaces';
+import { User, UserResource } from 'src/app/interfaces/resources.interfaces';
 
 
 @Component({
@@ -11,7 +12,7 @@ import { User } from 'src/app/interfaces/resources.interfaces';
 export class HomeComponent {
   resourceService: ResourceService = inject(ResourceService)
 
-  user!: User;
+  userResources!: UserResource[];
 
   ngOnInit() {
     this.getUserResources()
@@ -20,16 +21,14 @@ export class HomeComponent {
 
   getUserResources() {
     this.resourceService.getUserResources()
+      .pipe(take(1))
       .subscribe({
         next: data => {
-          this.user = data
+          this.userResources = data
         }
       })
   }
 
-  makeDummyExpressCall() {
-    this.resourceService.makeDummyExpressCall(this.user.username).subscribe(console.log)
-  }
 
   openCopProject() {
     this.resourceService.redirectToCoP().subscribe()

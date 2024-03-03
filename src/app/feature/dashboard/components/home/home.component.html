@@ -3,11 +3,10 @@
     <div class="btn-container">
         <button class="go-to-project-btn" mat-raised-button color="primary" (click)="openCopProject()">Open
             Project</button>
-        <button class="go-to-project-btn" mat-raised-button color="basic" (click)="makeDummyExpressCall()">Make Test
-            Call</button>
+
     </div>
     <div class="municipality-card-container">
-        <mat-card class="municipality-card" *ngFor="let resource of user?.resources">
+        <mat-card class="municipality-card" *ngFor="let resource of userResources">
             <mat-card-header>
                 <mat-card-title>{{resource.municipality | capitalizeFirstLetter}}</mat-card-title>
             </mat-card-header>

@@ -89,7 +89,7 @@ export class CreateUserComponent {
     const indicatorsInput: string = this.createUngroupedResourcesForm.get('indicators')?.value
     const indicators = indicatorsInput.split(',').map(piece => piece.trim())
     const newFormGroup: FormGroup = this.formBuilder.group({
-      grouped: [false],
+      is_grouped_indicators: [false],
       municipality: [municipalityInput],
       indicators: this.formBuilder.array(indicators.map(indicator => this.formBuilder.control(indicator)))
     })
