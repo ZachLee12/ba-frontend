@@ -1,6 +1,12 @@
 #CreateUserComponent {
     display: flex;
     flex-direction: column;
+    align-items: center;
+}
+
+.create-user-title {
+    text-wrap: wrap;
+
 }
 
 .create-user-form {

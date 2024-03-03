@@ -34,26 +34,7 @@ export class RequestAccountComponent {
   });
 
   ngOnInit() {
-    // this.usernameFormGroup.valueChanges
-    //   .pipe(
-    //     debounceTime(1000),
-    //     distinctUntilChanged(),
-    //     tap(() => this.showProgressBar = true),
-    //     switchMap(({ username }) => this.loginService.verifyEmail(username as string))
-    //   )
-    //   .subscribe(
-    //     {
-    //       next: isEmailValid => {
-    //         this.showProgressBar = false
-    //         this.isEmailValid = isEmailValid
 
-    //         //very troublesome way to trigger mat-error on invalid email... find another way
-    //         if (!isEmailValid) {
-    //           this.usernameFormGroup.get('username')?.setErrors({ invalid: true })
-    //         }
-    //       }
-    //     }
-    //   )
   }
 
   triggerResize() {
@@ -70,8 +51,8 @@ export class RequestAccountComponent {
 
   submitForm() {
     const requestAccountUser = {
-      ...this.usernameFormGroup.value,
-      ...this.reasonFormGroup.value
+      username: this.usernameFormGroup.get<string>('username')?.value.trim(),
+      reason: this.reasonFormGroup.get<string>('reason')?.value.trim()
     }
     this.userService.createRequestAccountUser(requestAccountUser as RequestAccountUser)
       .pipe(take(1))

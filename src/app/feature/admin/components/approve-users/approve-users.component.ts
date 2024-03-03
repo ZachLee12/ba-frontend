@@ -1,6 +1,8 @@
 import { Component, inject } from '@angular/core';
+import { MAT_DIALOG_DATA, MatDialog, MatDialogRef } from '@angular/material/dialog';
 import { map, switchMap, take } from 'rxjs';
 import { AdminService } from 'src/app/core/services/admin/admin.service';
+import { ConfirmationDialogComponent } from 'src/app/feature/standalone/confirmation-dialog/confirmation-dialog.component';
 import { EmailVerification } from 'src/app/interfaces/resources.interfaces';
 
 
@@ -11,6 +13,7 @@ import { EmailVerification } from 'src/app/interfaces/resources.interfaces';
 })
 export class ApproveUsersComponent {
   adminService: AdminService = inject(AdminService)
+  confirmationDialog: MatDialog = inject(MatDialog)
 
   emailVerifications: EmailVerification[] = []
   columnNamesToDisplay: string[] = ['']
@@ -44,20 +47,41 @@ export class ApproveUsersComponent {
   }
 
   rejectUserAccountRequest(username: string) {
-    this.adminService.rejectUserAccountRequest(username)
-      .pipe(
-        switchMap(() => this.adminService.getAllEmailVerifications()),
-        take(1))
-      .subscribe(
-        {
-          next: emailVerifications => {
-            this.dataSource = []
-            if (!emailVerifications || emailVerifications.length < 1) {
-              this.dataSource = emailVerifications.map(object => ({ actions: '', ...object }))
-            }
+    const dialogRef = this.confirmationDialog.open(ConfirmationDialogComponent,
+      {
+        data: {
+          title: 'Confirm Delete',
+          targetUsername: username,
+          content: 'Are you sure you want to delete user account request for',
+          primaryActionButton: {
+            color: 'warn',
+            text: 'Delete'
+          },
+          secondaryActionButton: {
+            color: 'basic',
+            text: 'Cancel'
           }
         }
-      )
+      }
+    )
+    dialogRef.afterClosed().subscribe(confirmDelete => {
+      if (confirmDelete) {
+        this.adminService.rejectUserAccountRequest(username)
+          .pipe(
+            switchMap(() => this.adminService.getAllEmailVerifications()),
+            take(1))
+          .subscribe(
+            {
+              next: emailVerifications => {
+                this.dataSource = []
+                if (!emailVerifications || emailVerifications.length < 1) {
+                  this.dataSource = emailVerifications.map(object => ({ actions: '', ...object }))
+                }
+              }
+            }
+          )
+      }
+    })
   }
 
 }

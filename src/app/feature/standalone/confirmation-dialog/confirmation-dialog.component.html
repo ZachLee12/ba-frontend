@@ -1,0 +1,10 @@
+<h1 mat-dialog-title>{{data.title}}</h1>
+<div mat-dialog-content>
+    {{data.content}} <strong>{{data.targetUsername}}</strong>?
+</div>
+<div mat-dialog-actions>
+    <button mat-raised-button [mat-dialog-close]="true"
+        [color]="data.primaryActionButton.color">{{data.primaryActionButton.text}}</button>
+    <button mat-stroked-button [mat-dialog-close]="false"
+        [color]="data.secondaryActionButton.color">{{data.secondaryActionButton.text}}</button>
+</div>

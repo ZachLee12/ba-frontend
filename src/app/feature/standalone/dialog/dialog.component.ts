@@ -4,7 +4,7 @@ import { QRCodeModule } from 'angularx-qrcode';
 import { MAT_DIALOG_DATA, MatDialogModule } from '@angular/material/dialog';
 import { MatButtonModule } from '@angular/material/button';
 
-export interface DialogData {
+interface DialogData {
   qrcodeUrl: string;
 }
 
