@@ -1,0 +1,24 @@
+<div id="AccountStatusComponent">
+
+    <h1>Check your SRL account status</h1>
+    <form [formGroup]="checkAccountStatusForm">
+        <mat-form-field>
+            <mat-label>Username</mat-label>
+            <mat-error>Username is <strong>required</strong></mat-error>
+            <input type="text" matInput formControlName="username">
+        </mat-form-field>
+
+        <button (click)="onSubmit()" mat-raised-button color="primary">Check account</button>
+    </form>
+
+    <h1>Result</h1>
+    <ng-container *ngIf="resultTemplate === RESULT_TEMPLATE.VIEW_PASSWORD">
+        <h2>View Password</h2>
+        <h3>{{resultTemplateData | json}}</h3>
+    </ng-container>
+
+    <ng-container *ngIf="resultTemplate === RESULT_TEMPLATE.INFORMATION">
+        <h2>Account Information</h2>
+        <h3>{{resultTemplateData | json}}</h3>
+    </ng-container>
+</div>

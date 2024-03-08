@@ -27,7 +27,7 @@ export class AppComponent {
     //redirect to login page if user is not logged in, except for request-access page
     const accessToken = sessionStorage.getItem('access_token')
     if (!accessToken) {
-      this.router.navigate(['login'])
+      // this.router.navigate(['login'])
     } else {
       this.pageLayoutService.openSidenav$()
       this.updateUsernameBasedOnToken()

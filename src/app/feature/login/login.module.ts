@@ -19,12 +19,14 @@ import { MatProgressBarModule } from '@angular/material/progress-bar';
 import { VerifyEmailComponent } from './components/verify-email/verify-email.component';
 import { MatMenuModule } from '@angular/material/menu';
 import { MatIconModule } from '@angular/material/icon';
+import { AccountStatusComponent } from './components/account-status/account-status.component';
 @NgModule({
   declarations: [
     LoginComponent,
     RequestAccountComponent,
     OtpComponent,
-    VerifyEmailComponent
+    VerifyEmailComponent,
+    AccountStatusComponent
   ],
   imports: [
     CommonModule,
