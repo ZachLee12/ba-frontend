@@ -17,6 +17,8 @@ import { MatCardModule } from '@angular/material/card';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatProgressBarModule } from '@angular/material/progress-bar';
 import { VerifyEmailComponent } from './components/verify-email/verify-email.component';
+import { MatMenuModule } from '@angular/material/menu';
+import { MatIconModule } from '@angular/material/icon';
 @NgModule({
   declarations: [
     LoginComponent,
@@ -39,7 +41,9 @@ import { VerifyEmailComponent } from './components/verify-email/verify-email.com
     QRCodeModule,
     MatCardModule,
     MatDialogModule,
-    MatProgressBarModule
+    MatProgressBarModule,
+    MatMenuModule,
+    MatIconModule
   ]
 })
 export class LoginModule { }

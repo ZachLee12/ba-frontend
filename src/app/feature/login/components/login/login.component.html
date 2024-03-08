@@ -13,8 +13,21 @@
         </mat-form-field>
         <div class="action-btns-container">
             <button (click)="login()" mat-raised-button color="primary">Log In</button>
-            <button mat-stroked-button [routerLink]="['/','request-account']">Request an account</button>
-            <button mat-stroked-button [routerLink]="['/','verify-email']">Verify Email</button>
+            <button mat-stroked-button [matMenuTriggerFor]="menu">Other options</button>
+            <mat-menu #menu="matMenu">
+                <button mat-menu-item [routerLink]="['/','request-account']">
+                    <mat-icon>lightbulb_outline</mat-icon>
+                    Request an account
+                </button>
+                <button mat-menu-item [routerLink]="['/','verify-email']">
+                    <mat-icon>question_mark</mat-icon>
+                    Check Account Status
+                </button>
+                <button mat-menu-item [routerLink]="['/','verify-email']">
+                    <mat-icon>check_circle_outline</mat-icon>
+                    Verify Email
+                </button>
+            </mat-menu>
         </div>
     </form>
 </div>

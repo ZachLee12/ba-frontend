@@ -13,12 +13,13 @@ import { Token, UserCredentials } from 'src/app/interfaces/login.interfaces';
   styleUrls: ['./login.component.scss']
 })
 export class LoginComponent {
-  loginForm!: FormGroup;
   formBuilder: FormBuilder = inject(FormBuilder)
   loginService: LoginService = inject(LoginService)
   router: Router = inject(Router)
   pageLayoutService: PageLayoutService = inject(PageLayoutService)
   snackBar: MatSnackBar = inject(MatSnackBar)
+
+  loginForm!: FormGroup;
 
   ngOnInit() {
     this.loginForm = this.formBuilder.group(
@@ -49,9 +50,6 @@ export class LoginComponent {
         next: nonceSession => {
           console.log(nonceSession)
           this.router.navigate(['/', 'otp'])
-          // this.storeTokenInSessionStorage(tokenResponse)
-          // this.pageLayoutService.openSidenav$()
-          // this.router.navigate(['dashboard', 'home'])
         },
         error: err => {
           console.error(err)
