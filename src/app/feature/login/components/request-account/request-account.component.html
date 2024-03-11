@@ -67,9 +67,12 @@
                 <p>{{'*'.repeat(this.passwordFormGroup.value.password!.length)}}</p>
             </div>
             <div>
-                <button mat-button matStepperPrevious>Back</button>
-                <button mat-button (click)="submitForm()">Submit</button>
+                <!-- Buttons are disabled when progress bar is shown, because there is an ongoing HTTP call -->
+                <button [disabled]="showProgressBar" mat-button matStepperPrevious>Back</button>
+                <button [disabled]="showProgressBar" mat-button (click)="submitForm()">Submit</button>
             </div>
         </mat-step>
     </mat-stepper>
+
+    <mat-progress-bar mode="indeterminate" *ngIf="showProgressBar"></mat-progress-bar>
 </div>

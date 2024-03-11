@@ -2,7 +2,8 @@ import { CdkTextareaAutosize } from '@angular/cdk/text-field';
 import { Component, ElementRef, NgZone, ViewChild, inject } from '@angular/core';
 import { FormBuilder, ValidatorFn, Validators } from '@angular/forms';
 import { MatSnackBar } from '@angular/material/snack-bar';
-import { debounce, debounceTime, distinctUntilChanged, fromEvent, switchMap, take, tap } from 'rxjs';
+import { Router } from '@angular/router';
+import { take } from 'rxjs';
 import { LoginService } from 'src/app/core/services/login/login.service';
 import { UserService } from 'src/app/core/services/user/user.service';
 import { SnackbarComponent } from 'src/app/feature/standalone/snackbar/snackbar.component';
@@ -19,13 +20,14 @@ export class RequestAccountComponent {
   loginService: LoginService = inject(LoginService)
   userService: UserService = inject(UserService)
   snackBar: MatSnackBar = inject(MatSnackBar)
+  router: Router = inject(Router)
 
   //for textarea autoresizing
   ngZone: NgZone = inject(NgZone)
   @ViewChild('autosize') autosize!: CdkTextareaAutosize;
   isEmailValid: boolean = false
   @ViewChild('emailInput') emailInputRef!: ElementRef;
-  showProgressBar: boolean = false
+
   usernameFormGroup = this.formBuild.group({
     username: ['zhengyang.lee@stud.hslu.ch', Validators.required],
   });
@@ -35,6 +37,9 @@ export class RequestAccountComponent {
   confirmPasswordFormGroup = this.formBuild.group({
     confirmPassword: ['Popcorn34%', Validators.required],
   });
+
+  // Progress bar
+  showProgressBar: boolean = false
 
 
   triggerResize() {
@@ -57,6 +62,8 @@ export class RequestAccountComponent {
   }
 
   submitForm() {
+    this.showProgressBar = true
+
     const requestAccountUser = {
       username: this.usernameFormGroup.get<string>('username')?.value.trim(),
       password: this.passwordFormGroup.get<string>('password')?.value.trim()
@@ -73,6 +80,8 @@ export class RequestAccountComponent {
                 actionButtonColor: 'primary'
               }
             })
+
+            this.router.navigate(['/', 'login'])
           },
           error: res => {
             this.snackBar.openFromComponent(SnackbarComponent, {
@@ -82,6 +91,9 @@ export class RequestAccountComponent {
                 actionButtonColor: 'warn'
               }
             })
+          },
+          complete: () => {
+            this.showProgressBar = false
           }
         }
       )
