@@ -30,7 +30,6 @@ export class ApproveUsersComponent {
             const existingUsernames = users.map(user => user.username)
             // Display only users that have requested an account, but not yet approved.
             this.dataSource = emailVerifications.filter(object => !existingUsernames.includes(object.username)).map(object => ({ actions: '', ...object }))
-
             if (this.dataSource.length === 0) {
               this.dataSource = [{ action: '', username: 'No user email verifications', verification_code: 'N/A', is_verified: 'N/A' }]
             }

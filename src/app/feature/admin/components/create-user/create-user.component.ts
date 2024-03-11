@@ -6,11 +6,7 @@ import { CreateUser } from 'src/app/interfaces/user.interfaces';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { SnackbarComponent } from 'src/app/feature/standalone/snackbar/snackbar.component';
 import { take } from 'rxjs';
-import { ActivatedRoute, Router } from '@angular/router';
-
-export interface Fruit {
-  name: string;
-}
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-create-user',
@@ -32,8 +28,7 @@ export class CreateUserComponent {
     //get last element which is the username after string splitting
     this.selectedUsername = this.router.url.split('/').slice(-1)[0]
     this.createUserForm = this.formBuilder.group({
-      username: [this.selectedUsername, Validators.required],
-      password: ['', Validators.required],
+      username: [{ value: this.selectedUsername, disabled: true }, Validators.required],
       groupedResources: this.formBuilder.array<UserResource>([]),
       ungroupedResources: this.formBuilder.array<UserResource>([])
     })

@@ -20,8 +20,8 @@ export class VerifyEmailComponent {
 
   ngOnInit() {
     this.verifyEmailForm = this.formBuilder.group({
-      username: ['enrico.bissig@gmail.com', Validators.required],
-      verificationCode: ['P1WMW0', Validators.required]
+      username: ['', Validators.required],
+      verificationCode: ['', Validators.required]
     })
   }
 

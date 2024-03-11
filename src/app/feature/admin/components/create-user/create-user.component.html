@@ -7,10 +7,6 @@
             <mat-label>Username</mat-label>
             <input type="text" matInput formControlName="username">
         </mat-form-field>
-        <mat-form-field>
-            <mat-label>Password</mat-label>
-            <input type="password" matInput formControlName="password">
-        </mat-form-field>
 
         <div class="mat-cards-container">
             <mat-card>
@@ -31,11 +27,11 @@
                         </mat-card>
                     </ng-container>
                     <form [formGroup]="createGroupedResourcesForm">
-                        <mat-form-field>
+                        <mat-form-field class="mat-form-field">
                             <mat-label>Municipality</mat-label>
                             <input type="text" matInput formControlName="municipality">
                         </mat-form-field>
-                        <mat-form-field>
+                        <mat-form-field class="mat-form-field">
                             <mat-label>Indicators</mat-label>
                             <input type="text" matInput formControlName="indicators">
                         </mat-form-field>
@@ -65,11 +61,11 @@
                         </mat-card>
                     </ng-container>
                     <form [formGroup]="createUngroupedResourcesForm">
-                        <mat-form-field>
+                        <mat-form-field class="mat-form-field">
                             <mat-label>Municipality</mat-label>
                             <input type="text" matInput formControlName="municipality">
                         </mat-form-field>
-                        <mat-form-field>
+                        <mat-form-field class="mat-form-field">
                             <mat-label>Indicators</mat-label>
                             <input type="text" matInput formControlName="indicators">
                         </mat-form-field>

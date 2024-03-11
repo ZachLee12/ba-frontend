@@ -23,6 +23,11 @@
                         [matBadgeHidden]="requestUserAccountCount === 0" aria-hidden="false">checklist_rtl</mat-icon>
                     <span>Approve Users</span>
                 </button>
+
+                <button mat-menu-item color="basic" (click)="logout()">
+                    <mat-icon>logout</mat-icon>
+                    <span>Log Out</span>
+                </button>
             </mat-menu>
         </ng-container>
 
@@ -46,8 +51,6 @@
                     </mat-nav-list>
                 </mat-expansion-panel>
             </mat-accordion>
-
-            <button mat-stroked-button color="basic" (click)="logout()">Log Out</button>
         </div>
     </mat-sidenav>
     <mat-sidenav-content>

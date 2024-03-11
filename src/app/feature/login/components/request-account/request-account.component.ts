@@ -1,6 +1,6 @@
 import { CdkTextareaAutosize } from '@angular/cdk/text-field';
 import { Component, ElementRef, NgZone, ViewChild, inject } from '@angular/core';
-import { FormBuilder, Validators } from '@angular/forms';
+import { FormBuilder, ValidatorFn, Validators } from '@angular/forms';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { debounce, debounceTime, distinctUntilChanged, fromEvent, switchMap, take, tap } from 'rxjs';
 import { LoginService } from 'src/app/core/services/login/login.service';
@@ -27,32 +27,39 @@ export class RequestAccountComponent {
   @ViewChild('emailInput') emailInputRef!: ElementRef;
   showProgressBar: boolean = false
   usernameFormGroup = this.formBuild.group({
-    username: ['leezhengyang22@gmail.com'],
+    username: ['zhengyang.lee@stud.hslu.ch', Validators.required],
   });
-  reasonFormGroup = this.formBuild.group({
-    reason: ['supercoolreason', Validators.required],
+  passwordFormGroup = this.formBuild.group({
+    password: ['Popcorn34%', Validators.pattern(/^(?=.*[A-Z])(?=.*\d)(?=.*[^A-Za-z0-9]).{8,}$/)],
+  });
+  confirmPasswordFormGroup = this.formBuild.group({
+    confirmPassword: ['Popcorn34%', Validators.required],
   });
 
-  ngOnInit() {
-
-  }
 
   triggerResize() {
     // Wait for changes to be applied, then trigger textarea resize.
     this.ngZone.onStable.pipe(take(1)).subscribe(() => this.autosize.resizeToFitContent(true));
   }
 
+  checkIfPasswordsMatch() {
+    const { password } = this.passwordFormGroup.value
+    const { confirmPassword } = this.confirmPasswordFormGroup.value
+
+    return password === confirmPassword
+  }
+
   getFormValues() {
     return {
       ...this.usernameFormGroup.value,
-      ...this.reasonFormGroup.value
+      ...this.passwordFormGroup.value
     }
   }
 
   submitForm() {
     const requestAccountUser = {
       username: this.usernameFormGroup.get<string>('username')?.value.trim(),
-      reason: this.reasonFormGroup.get<string>('reason')?.value.trim()
+      password: this.passwordFormGroup.get<string>('password')?.value.trim()
     }
     this.userService.createRequestAccountUser(requestAccountUser as RequestAccountUser)
       .pipe(take(1))

@@ -9,11 +9,8 @@
                     <mat-label>Username</mat-label>
                     <input #emailInput matInput formControlName="username">
                     <mat-error class="invalid-email-hint">
-                        Please enter a valid email.
+                        Username is <strong>required</strong>
                     </mat-error>
-                    <mat-hint *ngIf="showProgressBar">
-                        Verifying email...
-                    </mat-hint>
                 </mat-form-field>
                 <mat-progress-bar *ngIf="showProgressBar" mode="indeterminate"></mat-progress-bar>
                 <div>
@@ -21,17 +18,41 @@
                 </div>
             </form>
         </mat-step>
-        <mat-step [stepControl]="reasonFormGroup">
-            <form [formGroup]="reasonFormGroup">
-                <ng-template matStepLabel>Why do you want an account with Smart Region Lab?</ng-template>
-                <mat-form-field class="textarea-form-field">
-                    <mat-label>Reason</mat-label>
-                    <textarea cdkTextareaAutosize #autosize="cdkTextareaAutosize" cdkAutosizeMinRows="1"
-                        cdkAutosizeMaxRows="5" matInput formControlName="reason" resize="false" required></textarea>
+        <mat-step [stepControl]="passwordFormGroup">
+            <form [formGroup]="passwordFormGroup">
+                <ng-template matStepLabel>Choose a <strong>strong</strong> password</ng-template>
+                <mat-form-field>
+                    <mat-label>Password</mat-label>
+                    <mat-error class="invalid-email-hint">Password must have <strong>at least 8 characters</strong>,
+                        <strong>1 capital letter</strong>, <strong>
+                            1
+                            number
+                        </strong> and <strong>1 special character</strong>.
+                    </mat-error>
+
+                    <input type="password" matInput formControlName="password">
                 </mat-form-field>
                 <div>
                     <button mat-button matStepperPrevious>Back</button>
                     <button mat-button matStepperNext>Next</button>
+                </div>
+            </form>
+        </mat-step>
+        <mat-step [stepControl]="confirmPasswordFormGroup">
+            <form [formGroup]="confirmPasswordFormGroup">
+                <ng-template matStepLabel>Confirm your password again</ng-template>
+                <mat-form-field>
+                    <mat-label>Confirm password</mat-label>
+                    <input type="password" matInput formControlName="confirmPassword">
+                    <mat-hint *ngIf="this.confirmPasswordFormGroup.get('confirmPassword')?.dirty"
+                        [class.passwords-match]="checkIfPasswordsMatch()"
+                        [class.passwords-do-not-match]="!checkIfPasswordsMatch()">
+                        {{checkIfPasswordsMatch()? 'Passwords matched!':'Passwords do not match!'}}
+                    </mat-hint>
+                </mat-form-field>
+                <div>
+                    <button mat-button matStepperPrevious>Back</button>
+                    <button mat-button matStepperNext [disabled]="!checkIfPasswordsMatch()">Next</button>
                 </div>
             </form>
         </mat-step>
@@ -43,11 +64,7 @@
             </div>
             <div>
                 <h2>Password</h2>
-                <p>******</p>
-            </div>
-            <div>
-                <h2>Reason</h2>
-                <p>{{reasonFormGroup.value.reason}}</p>
+                <p>{{'*'.repeat(this.passwordFormGroup.value.password!.length)}}</p>
             </div>
             <div>
                 <button mat-button matStepperPrevious>Back</button>
