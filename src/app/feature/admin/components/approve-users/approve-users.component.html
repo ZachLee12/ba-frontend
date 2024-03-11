@@ -1,10 +1,10 @@
 <div id="ApproveUsersComponent">
     <h1>Approve Users</h1>
-    <mat-paginator [pageSizeOptions]="[5,10,20]"></mat-paginator>
-    <table mat-table *ngIf="dataSource.data.length > 0" [dataSource]="dataSource">
+    <mat-paginator #paginator [pageSizeOptions]="[5,10,20]"></mat-paginator>
+    <table mat-table matSort *ngIf="dataSource.data.length > 0" [dataSource]="dataSource">
         <ng-container *ngFor="let columnName of columnNamesToDisplay" [matColumnDef]="columnName">
             <ng-container *ngIf="columnName !=='actions'; else actionsColumn">
-                <th mat-header-cell class="vertical-divider" *matHeaderCellDef>{{columnName}}</th>
+                <th mat-sort-header mat-header-cell class="vertical-divider" *matHeaderCellDef>{{columnName}}</th>
                 <td mat-cell class="vertical-divider" *matCellDef="let element">
                     <span
                         [matBadgeHidden]="(columnName !== 'username' && !element['is_verified']|| element['is_verified'])"
@@ -19,7 +19,7 @@
                 <mat-divider></mat-divider>
             </ng-container>
             <ng-template #actionsColumn>
-                <th mat-header-cell class="vertical-divider" *matHeaderCellDef>{{columnName}}</th>
+                <th mat-sort-header mat-header-cell class="vertical-divider" *matHeaderCellDef>{{columnName}}</th>
                 <td mat-cell class="vertical-divider" *matCellDef="let element">
                     <button mat-button [disabled]="element['is_verified'] === 'N/A'" color="primary"
                         matTooltip="Approve user and assign resources"

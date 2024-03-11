@@ -41,6 +41,7 @@ export class ApproveUsersComponent {
               const dataWhenNoEmailVerifications: any[] = [{ action: '', username: 'No user email verifications', verification_code: 'N/A', is_verified: 'N/A' }]
               this.dataSource = new MatTableDataSource(dataWhenNoEmailVerifications)
             }
+            this.dataSource.paginator = this.paginator
           }
         }
       )
@@ -50,7 +51,6 @@ export class ApproveUsersComponent {
     this.dataSource.paginator = this.paginator
     this.dataSource.sort = this.sort;
   }
-
 
   getEmailVerificationsAndUsersZip$(): Observable<[EmailVerification[], { username: string, is_password_viewed: boolean }[]]> {
     return zip(this.adminService.getAllEmailVerifications(), this.adminService.getAllUsers())
@@ -95,6 +95,7 @@ export class ApproveUsersComponent {
                 if (this.dataSource.data.length === 0) {
                   const dataWhenNoEmailVerifications: any[] = [{ action: '', username: 'No user email verifications', verification_code: 'N/A', is_verified: 'N/A' }]
                   this.dataSource = new MatTableDataSource(dataWhenNoEmailVerifications)
+                  this.dataSource.paginator = this.paginator
                 }
               }
             }

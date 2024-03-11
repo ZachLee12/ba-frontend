@@ -37,7 +37,8 @@ import { MatSortModule } from '@angular/material/sort';
     MatTableModule,
     MatTooltipModule,
     MatBadgeModule,
-    MatPaginatorModule
+    MatPaginatorModule,
+    MatSortModule
   ]
 })
 export class AdminModule { }
