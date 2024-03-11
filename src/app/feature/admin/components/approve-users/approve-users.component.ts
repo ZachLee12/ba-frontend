@@ -1,5 +1,8 @@
-import { Component, inject } from '@angular/core';
+import { Component, ViewChild, inject } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
+import { MatPaginator } from '@angular/material/paginator';
+import { MatSort } from '@angular/material/sort';
+import { MatTableDataSource } from '@angular/material/table';
 import { Observable, switchMap, take, zip } from 'rxjs';
 import { AdminService } from 'src/app/core/services/admin/admin.service';
 import { ConfirmationDialogComponent } from 'src/app/feature/standalone/confirmation-dialog/confirmation-dialog.component';
@@ -17,7 +20,10 @@ export class ApproveUsersComponent {
 
   emailVerifications: EmailVerification[] = []
   columnNamesToDisplay: string[] = ['']
-  dataSource: any[] = []
+  dataSource: MatTableDataSource<any[]> = new MatTableDataSource<any[]>([]);
+
+  @ViewChild(MatPaginator) paginator!: MatPaginator;
+  @ViewChild(MatSort) sort!: MatSort;
 
   ngOnInit() {
     this.getEmailVerificationsAndUsersZip$()
@@ -29,13 +35,20 @@ export class ApproveUsersComponent {
 
             const existingUsernames = users.map(user => user.username)
             // Display only users that have requested an account, but not yet approved.
-            this.dataSource = emailVerifications.filter(object => !existingUsernames.includes(object.username)).map(object => ({ actions: '', ...object }))
-            if (this.dataSource.length === 0) {
-              this.dataSource = [{ action: '', username: 'No user email verifications', verification_code: 'N/A', is_verified: 'N/A' }]
+            const targetEmailVerifications: any[] = emailVerifications.filter(object => !existingUsernames.includes(object.username)).map(object => ({ actions: '', ...object }))
+            this.dataSource = new MatTableDataSource(targetEmailVerifications)
+            if (this.dataSource.data.length === 0) {
+              const dataWhenNoEmailVerifications: any[] = [{ action: '', username: 'No user email verifications', verification_code: 'N/A', is_verified: 'N/A' }]
+              this.dataSource = new MatTableDataSource(dataWhenNoEmailVerifications)
             }
           }
         }
       )
+  }
+
+  ngAfterViewInit() {
+    this.dataSource.paginator = this.paginator
+    this.dataSource.sort = this.sort;
   }
 
 
@@ -77,10 +90,11 @@ export class ApproveUsersComponent {
 
                 const existingUsernames = users.map(user => user.username)
                 // Display only users that have requested an account, but not yet approved.
-                this.dataSource = emailVerifications.filter(object => !existingUsernames.includes(object.username)).map(object => ({ actions: '', ...object }))
-
-                if (this.dataSource.length === 0) {
-                  this.dataSource = [{ action: '', username: 'No user email verifications', verification_code: 'N/A', is_verified: 'N/A' }]
+                const targetEmailVerifications: any[] = emailVerifications.filter(object => !existingUsernames.includes(object.username)).map(object => ({ actions: '', ...object }))
+                this.dataSource = new MatTableDataSource(targetEmailVerifications)
+                if (this.dataSource.data.length === 0) {
+                  const dataWhenNoEmailVerifications: any[] = [{ action: '', username: 'No user email verifications', verification_code: 'N/A', is_verified: 'N/A' }]
+                  this.dataSource = new MatTableDataSource(dataWhenNoEmailVerifications)
                 }
               }
             }

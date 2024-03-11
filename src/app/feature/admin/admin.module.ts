@@ -16,6 +16,8 @@ import { MatDividerModule } from '@angular/material/divider';
 import { MatTableModule } from '@angular/material/table';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { MatBadgeModule } from '@angular/material/badge';
+import { MatPaginatorModule } from '@angular/material/paginator';
+import { MatSortModule } from '@angular/material/sort';
 
 @NgModule({
   declarations: [AdminComponent, CreateUserComponent, ApproveUsersComponent],
@@ -34,7 +36,8 @@ import { MatBadgeModule } from '@angular/material/badge';
     MatDividerModule,
     MatTableModule,
     MatTooltipModule,
-    MatBadgeModule
+    MatBadgeModule,
+    MatPaginatorModule
   ]
 })
 export class AdminModule { }

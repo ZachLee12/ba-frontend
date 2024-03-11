@@ -1,6 +1,7 @@
 <div id="ApproveUsersComponent">
     <h1>Approve Users</h1>
-    <table mat-table *ngIf="dataSource.length > 0" [dataSource]="dataSource">
+    <mat-paginator [pageSizeOptions]="[5,10,20]"></mat-paginator>
+    <table mat-table *ngIf="dataSource.data.length > 0" [dataSource]="dataSource">
         <ng-container *ngFor="let columnName of columnNamesToDisplay" [matColumnDef]="columnName">
             <ng-container *ngIf="columnName !=='actions'; else actionsColumn">
                 <th mat-header-cell class="vertical-divider" *matHeaderCellDef>{{columnName}}</th>
@@ -34,4 +35,5 @@
         <tr mat-header-row *matHeaderRowDef="columnNamesToDisplay"></tr>
         <tr mat-row *matRowDef="let row; columns: columnNamesToDisplay;">
     </table>
+
 </div>
