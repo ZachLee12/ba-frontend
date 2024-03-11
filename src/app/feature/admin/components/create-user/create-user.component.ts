@@ -28,7 +28,7 @@ export class CreateUserComponent {
     //get last element which is the username after string splitting
     this.selectedUsername = this.router.url.split('/').slice(-1)[0]
     this.createUserForm = this.formBuilder.group({
-      username: [{ value: this.selectedUsername, disabled: true }, Validators.required],
+      username: [this.selectedUsername, Validators.required],
       groupedResources: this.formBuilder.array<UserResource>([]),
       ungroupedResources: this.formBuilder.array<UserResource>([])
     })
@@ -93,12 +93,12 @@ export class CreateUserComponent {
   removeUngroupedResourcesFormGroup(index: number) {
     this.getUngroupedResourcesFormArray().removeAt(index)
   }
+
   submitForm() {
     const formValue = this.createUserForm.value
 
     const createUser: CreateUser = {
       username: formValue.username,
-      password: formValue.password,
       resources: [...formValue.groupedResources, ...formValue.ungroupedResources]
     }
 

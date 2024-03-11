@@ -1,7 +1,7 @@
 import { User } from "./resources.interfaces"
 
-export interface CreateUser extends User {
-    password: string
+export interface CreateUser extends Omit<User, 'password'> {
+
 }
 
 export interface RequestAccountUser {
