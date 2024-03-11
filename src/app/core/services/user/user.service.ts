@@ -1,7 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable, inject } from '@angular/core';
 import { Observable, map } from 'rxjs';
-import { User } from 'src/app/interfaces/resources.interfaces';
 import { CreateUser, RequestAccountUser } from 'src/app/interfaces/user.interfaces';
 import { environment } from 'src/environments/environment.development';
 

@@ -1,8 +1,7 @@
 import { Component, inject } from '@angular/core';
 import { FormArray, FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { UserResource } from 'src/app/interfaces/resources.interfaces';
 import { UserService } from 'src/app/core/services/user/user.service';
-import { CreateUser } from 'src/app/interfaces/user.interfaces';
+import { CreateUser, UserResource } from 'src/app/interfaces/user.interfaces';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { SnackbarComponent } from 'src/app/feature/standalone/snackbar/snackbar.component';
 import { take } from 'rxjs';

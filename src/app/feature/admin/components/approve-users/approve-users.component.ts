@@ -1,9 +1,9 @@
 import { Component, inject } from '@angular/core';
-import { MAT_DIALOG_DATA, MatDialog, MatDialogRef } from '@angular/material/dialog';
-import { Observable, map, switchMap, take, zip } from 'rxjs';
+import { MatDialog } from '@angular/material/dialog';
+import { Observable, switchMap, take, zip } from 'rxjs';
 import { AdminService } from 'src/app/core/services/admin/admin.service';
 import { ConfirmationDialogComponent } from 'src/app/feature/standalone/confirmation-dialog/confirmation-dialog.component';
-import { EmailVerification } from 'src/app/interfaces/resources.interfaces';
+import { EmailVerification } from 'src/app/interfaces/user.interfaces';
 
 
 @Component({

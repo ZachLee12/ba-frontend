@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable, inject } from '@angular/core';
 import { Observable, map } from 'rxjs';
-import { EmailVerification, User } from 'src/app/interfaces/resources.interfaces';
+import { EmailVerification } from 'src/app/interfaces/user.interfaces';
 import { environment } from 'src/environments/environment.development';
 
 @Injectable({

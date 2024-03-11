@@ -1,7 +1,7 @@
 import { Component, inject } from '@angular/core';
 import { take } from 'rxjs';
 import { ResourceService } from 'src/app/core/services/resource/resource.service';
-import { User, UserResource } from 'src/app/interfaces/resources.interfaces';
+import { UserResource } from 'src/app/interfaces/user.interfaces';
 
 
 @Component({
