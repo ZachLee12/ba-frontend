@@ -42,6 +42,7 @@ export class ApproveUsersComponent {
               this.dataSource = new MatTableDataSource(dataWhenNoEmailVerifications)
             }
             this.dataSource.paginator = this.paginator
+            this.dataSource.sort = this.sort
           }
         }
       )
@@ -96,6 +97,7 @@ export class ApproveUsersComponent {
                   const dataWhenNoEmailVerifications: any[] = [{ action: '', username: 'No user email verifications', verification_code: 'N/A', is_verified: 'N/A' }]
                   this.dataSource = new MatTableDataSource(dataWhenNoEmailVerifications)
                   this.dataSource.paginator = this.paginator
+                  this.dataSource.sort = this.sort
                 }
               }
             }
@@ -103,4 +105,5 @@ export class ApproveUsersComponent {
       }
     })
   }
+
 }

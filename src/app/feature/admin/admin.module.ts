@@ -18,6 +18,7 @@ import { MatTooltipModule } from '@angular/material/tooltip';
 import { MatBadgeModule } from '@angular/material/badge';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatSortModule } from '@angular/material/sort';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 @NgModule({
   declarations: [AdminComponent, CreateUserComponent, ApproveUsersComponent],
@@ -38,7 +39,8 @@ import { MatSortModule } from '@angular/material/sort';
     MatTooltipModule,
     MatBadgeModule,
     MatPaginatorModule,
-    MatSortModule
+    MatSortModule,
+    BrowserAnimationsModule
   ]
 })
 export class AdminModule { }
