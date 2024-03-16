@@ -22,12 +22,12 @@ export class ResourceService {
   }
 
   makeDummyExpressCall(username: string) {
-    return this.httpClient.get(`http://localhost:5000/users/username/${username}/resources`)
+    return this.httpClient.get(`${environment.dummyExpressUrl}/users/username/${username}/resources`)
   }
 
   redirectToCoP() {
     const token = this.loginService.getJwt()
-    const copUrl = `http://localhost:5000/check?token=${token}`
+    const copUrl = `${environment.dummyExpressUrl}/check?token=${token}`
     return this.httpClient.get(copUrl, { responseType: 'text' }).pipe(tap(() => window.open(copUrl)))
   }
 

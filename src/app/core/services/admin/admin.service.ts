@@ -11,7 +11,7 @@ export class AdminService {
   httpClient: HttpClient = inject(HttpClient)
 
   getAllEmailVerifications(): Observable<EmailVerification[]> {
-    return this.httpClient.get<{ data: EmailVerification[] }>(`${environment.apiUrl}/database/email-verifications`)
+    return this.httpClient.get<{ data: EmailVerification[] }>(`${environment.apiUrl}/users/email-verifications`)
       .pipe(map(res => res.data))
   }
 

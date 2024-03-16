@@ -91,6 +91,7 @@ export class RequestAccountComponent {
                 actionButtonColor: 'warn'
               }
             })
+            this.showProgressBar = false
           },
           complete: () => {
             this.showProgressBar = false

@@ -20,7 +20,7 @@ export class LoginService {
   loginForNonceSession(userCredentials: UserCredentials): Observable<UserNonceSession> {
     const { username, password } = userCredentials
     const httpBody = { username, password }
-    return this.httpClient.post<UserNonceSession>(`${environment.apiUrl}/login-otp-nonce`, httpBody)
+    return this.httpClient.post<UserNonceSession>(`${environment.apiUrl}/otp/login-otp-nonce`, httpBody)
       .pipe(tap(response => {
         this.currentUsername = response.username
         this.currentNonce = response.nonce
