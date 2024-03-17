@@ -38,13 +38,13 @@ export class LoginService {
     return this.httpClient.post<Token>(`${environment.apiUrl}/otp/verify-otp-nonce`, otpNoncePair)
   }
 
-  logout() {
+  logout(): void {
     // Clear the JWT that are stored in session storage.
     sessionStorage.clear()
     this.router.navigate(['/login'])
   }
 
-  getDecodedJwt() {
+  getDecodedJwt(): string | null {
     const token = sessionStorage.getItem('access_token') || null
     if (token) {
       return jwt_decode.jwtDecode(token)
@@ -53,7 +53,7 @@ export class LoginService {
     }
   }
 
-  getJwt() {
+  getJwt(): string | null {
     return sessionStorage.getItem('access_token') || null
   }
 
@@ -69,11 +69,11 @@ export class LoginService {
     })
   }
 
-  verifyEmailVerificationCode$(username: string, verificationCode: string) {
+  verifyEmailVerificationCode$(username: string, verificationCode: string): Observable<boolean> {
     const body: UserEmailVerificationCode = {
       username,
       verification_code: verificationCode
     }
-    return this.httpClient.post(`${environment.apiUrl}/verify-email/verify-email-with-verification-code`, body)
+    return this.httpClient.post<boolean>(`${environment.apiUrl}/verify-email/verify-email-with-verification-code`, body)
   }
 }

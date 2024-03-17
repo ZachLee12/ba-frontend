@@ -21,8 +21,14 @@ export class AdminService {
       .pipe(map(res => res.data))
   }
 
-  getAllUsers$(): Observable<any[]> {
-    return this.httpClient.get<{ data: EmailVerification[] }>(`${environment.apiUrl}/users`)
+  getAllUsers$(): Observable<{ username: string, is_password_viewed: boolean }[]> {
+    return this.httpClient.get<{ data: { username: string, is_password_viewed: boolean }[] }>(`${environment.apiUrl}/users`)
+      .pipe(map(res => res.data))
+  }
+
+  getRequestAccountUsersCount$(): Observable<number> {
+    return this.httpClient
+      .get<{ data: number }>(`${environment.apiUrl}/users/request-account-user-count`)
       .pipe(map(res => res.data))
   }
 }

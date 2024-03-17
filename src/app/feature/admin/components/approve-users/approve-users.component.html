@@ -25,8 +25,8 @@
                         matTooltip="Approve user and assign resources"
                         [routerLink]="['/','admin','create-user',element['username']]">Inspect</button>
                     <button [disabled]="element['is_verified'] === 'N/A'"
-                        (click)="rejectUserAccountRequest(element['username'])" mat-button color="warn"
-                        matTooltip="Reject user and delete this account request">Reject</button>
+                        (click)="deleteUserAccountRequest(element['username'])" mat-button color="warn"
+                        matTooltip="Reject user and delete this account request">Delete</button>
                 </td>
                 <mat-divider></mat-divider>
             </ng-template>

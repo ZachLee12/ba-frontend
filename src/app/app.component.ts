@@ -5,7 +5,7 @@ import { jwtDecode } from 'jwt-decode';
 import { PageLayoutService } from './core/services/page-layout/page-layout.service';
 import { Observable, take } from 'rxjs';
 import { SidenavStateEnum } from './interfaces/pageLayout.interfaces';
-import { UserService } from './core/services/user/user.service';
+import { AdminService } from './core/services/admin/admin.service';
 
 @Component({
   selector: 'app-root',
@@ -16,7 +16,7 @@ export class AppComponent {
   router: Router = inject(Router)
   loginService: LoginService = inject(LoginService)
   pageLayoutService: PageLayoutService = inject(PageLayoutService)
-  userService: UserService = inject(UserService)
+  adminService: AdminService = inject(AdminService)
 
   userIsLoggedIn: boolean = false
   username!: string;
@@ -42,7 +42,7 @@ export class AppComponent {
             if (this.userIsLoggedIn) {
               this.updateUsernameBasedOnToken()
               // Get RequestUserAccount Count 
-              this.userService.getRequestAccountUsersCount$().pipe(take(1)).subscribe({
+              this.adminService.getRequestAccountUsersCount$().pipe(take(1)).subscribe({
                 next: count => this.requestUserAccountCount = count
               })
             }

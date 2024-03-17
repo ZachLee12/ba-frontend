@@ -5,7 +5,8 @@ import { LoginService } from '../login/login.service';
 import { environment } from 'src/environments/environment.development';
 import { UserResource } from 'src/app/interfaces/user.interfaces';
 
-
+// ResourceService handles methods related to fetching user resources from the server, and redirecting users
+// to the Dummy Express server (a mock for the Communal Planning project) with the JWT in a query param.
 @Injectable({
   providedIn: 'root'
 })
@@ -21,10 +22,11 @@ export class ResourceService {
       .pipe(map((res: any) => res.data))
   }
 
-  makeDummyExpressCall(username: string) {
+  makeDummyExpressCall(username: string): Observable<any> {
     return this.httpClient.get(`${environment.dummyExpressUrl}/users/username/${username}/resources`)
   }
 
+  // Redirect users to Dummy Express server (mock CoP), and attaches the JWT as a query param in the url.
   redirectToCoP() {
     const token = this.loginService.getJwt()
     const copUrl = `${environment.dummyExpressUrl}/check?token=${token}`

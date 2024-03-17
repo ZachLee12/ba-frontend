@@ -8,7 +8,7 @@ import { AdminService } from 'src/app/core/services/admin/admin.service';
 import { ConfirmationDialogComponent } from 'src/app/feature/standalone/confirmation-dialog/confirmation-dialog.component';
 import { EmailVerification } from 'src/app/interfaces/user.interfaces';
 
-
+// ApproveUsersComponent provides the view of a table on information about users that have requested an account.
 @Component({
   selector: 'app-approve-users',
   templateUrl: './approve-users.component.html',
@@ -16,12 +16,16 @@ import { EmailVerification } from 'src/app/interfaces/user.interfaces';
 })
 export class ApproveUsersComponent {
   adminService: AdminService = inject(AdminService)
+  // This confirmationDialog pops up when the Admin attempts to delete a user account request, 
+  // to prevent the request from actually being deleted when the Admin just misclicked the `delete` button.
   confirmationDialog: MatDialog = inject(MatDialog)
 
   emailVerifications: EmailVerification[] = []
   columnNamesToDisplay: string[] = ['']
-  dataSource: MatTableDataSource<any[]> = new MatTableDataSource<any[]>([]);
 
+  // The data for the Angular Material table to be rendered.
+  dataSource: MatTableDataSource<any[]> = new MatTableDataSource<any[]>([]);
+  // Paginator and Sort for the Angular Material table.
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   @ViewChild(MatSort) sort!: MatSort;
 
@@ -53,11 +57,17 @@ export class ApproveUsersComponent {
     this.dataSource.sort = this.sort;
   }
 
+  // Put the result from getAllEmailVerifications$() and getAllUsers$() observables into a pair in an array.
+  // This makes it easier to ensure that both HTTP calls are finished before further logic is executed,
+  // as data from both observables are needed to determine which user account request should be displayed.
   getEmailVerificationsAndUsersZip$(): Observable<[EmailVerification[], { username: string, is_password_viewed: boolean }[]]> {
     return zip(this.adminService.getAllEmailVerifications$(), this.adminService.getAllUsers$())
   }
 
-  rejectUserAccountRequest(username: string) {
+  // This method opens up a Dialog for the Admin to double confirm that this user account request really should
+  // be deleted. The `data` object is injected into the ConfirmationDialogComponent, to make the component reusable
+  // with different data.
+  deleteUserAccountRequest(username: string) {
     const dialogRef = this.confirmationDialog.open(ConfirmationDialogComponent,
       {
         data: {
