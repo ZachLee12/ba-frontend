@@ -7,6 +7,7 @@ import { SnackbarComponent } from 'src/app/feature/standalone/snackbar/snackbar.
 import { take } from 'rxjs';
 import { Router } from '@angular/router';
 
+// CreateUserComponent provides the view of forms to allow Admin to create a user and assign the user's resources.
 @Component({
   selector: 'app-create-user',
   templateUrl: './create-user.component.html',
@@ -24,7 +25,7 @@ export class CreateUserComponent {
   selectedUsername: string = ''
 
   ngOnInit() {
-    //get last element which is the username after string splitting
+    //Get last piece of string, which is the username after string splitting
     this.selectedUsername = this.router.url.split('/').slice(-1)[0]
     this.createUserForm = this.formBuilder.group({
       username: [this.selectedUsername, Validators.required],
@@ -95,7 +96,6 @@ export class CreateUserComponent {
 
   submitForm() {
     const formValue = this.createUserForm.value
-
     const createUser: CreateUser = {
       username: formValue.username,
       resources: [...formValue.groupedResources, ...formValue.ungroupedResources]
@@ -104,8 +104,10 @@ export class CreateUserComponent {
     this.userService.createUser$(createUser).pipe(take(1)).subscribe(
       {
         next: message => {
+          // Snackbar is the pop up that appears at the bottom of the screen. This is just to 
+          // give the user feedback on whether a HTTP action has succeeded or not.
           this.snackBar.openFromComponent(SnackbarComponent, {
-            duration: 5000, //milliseconds
+            duration: 5000, //closes itself after 5 seconds
             data: {
               message: message,
               actionText: 'OK',
@@ -115,7 +117,7 @@ export class CreateUserComponent {
         },
         error: err => {
           this.snackBar.openFromComponent(SnackbarComponent, {
-            duration: 5000, //milliseconds
+            duration: 5000, //closes itself after 5 seconds
             data: {
               message: err.error.detail,
               actionText: 'OK',

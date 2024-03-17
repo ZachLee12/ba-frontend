@@ -9,7 +9,7 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 import { SnackbarComponent } from 'src/app/feature/standalone/snackbar/snackbar.component';
 import { PageLayoutService } from 'src/app/core/services/page-layout/page-layout.service';
 
-
+// OtpComponent provides the view of a form for users to submit their OTP.
 @Component({
   selector: 'app-otp',
   templateUrl: './otp.component.html',

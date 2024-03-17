@@ -7,6 +7,9 @@ import { PageLayoutService } from 'src/app/core/services/page-layout/page-layout
 import { SnackbarComponent } from 'src/app/feature/standalone/snackbar/snackbar.component';
 import { Token, UserCredentials } from 'src/app/interfaces/login.interfaces';
 
+// LoginComponent provides the view of a login form for users to log in.
+// It also provides a collapsible menu for users to navigate to routes that are for
+// requesting an account and verifying their emails.
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
@@ -25,14 +28,14 @@ export class LoginComponent {
     this.loginForm = this.formBuilder.group(
       {
         'username': ['', Validators.required],
-        'password': ['secret', Validators.required]
+        'password': ['', Validators.required]
       }
     )
   }
 
   openSnackBar(message: string, actionText: string, actionButtonColor: 'primary' | 'accent' | 'warn') {
     this.snackBar.openFromComponent(SnackbarComponent, {
-      duration: 5000, //milliseconds for snackbar to stay open
+      duration: 5000, //self closes after 5000 milliseconds
       data: {
         message,
         actionText,

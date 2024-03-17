@@ -5,7 +5,7 @@ import { Observable, tap } from 'rxjs';
 import * as jwt_decode from "jwt-decode";
 import { Router } from '@angular/router';
 import { environment } from 'src/environments/environment.development';
-import { UserEmailVerificationCode } from 'src/app/interfaces/user.interfaces';
+import { EmailVerification } from 'src/app/interfaces/user.interfaces';
 
 // LoginService handles all tasks that are related to the user authentication process, 
 // which is when they try to log in.
@@ -70,7 +70,7 @@ export class LoginService {
   }
 
   verifyEmailVerificationCode$(username: string, verificationCode: string): Observable<boolean> {
-    const body: UserEmailVerificationCode = {
+    const body: Omit<EmailVerification, 'is_verified'> = {
       username,
       verification_code: verificationCode
     }

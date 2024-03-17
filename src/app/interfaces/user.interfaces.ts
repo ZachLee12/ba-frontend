@@ -1,16 +1,16 @@
-export interface UserResource {
-    username: string,
-    municipality: string,
-    is_grouped_indicators: boolean,
-    indicators: any[]
-}
-
+// Interaces that are related to users, and actions that are dealing with users.
 export interface User {
     username: string,
     password: string,
     resources: UserResource[]
 }
 
+export interface UserResource {
+    username: string,
+    municipality: string,
+    is_grouped_indicators: boolean,
+    indicators: any[]
+}
 
 export interface EmailVerification {
     username: string,
@@ -26,9 +26,4 @@ export interface RequestAccountUser {
     username: string,
     password: string,
     reason: string
-}
-
-export interface UserEmailVerificationCode {
-    username: string,
-    verification_code: string
 }

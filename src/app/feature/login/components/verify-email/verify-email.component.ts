@@ -6,6 +6,8 @@ import { take } from 'rxjs';
 import { LoginService } from 'src/app/core/services/login/login.service';
 import { SnackbarComponent } from 'src/app/feature/standalone/snackbar/snackbar.component';
 
+// VerifyEmailComponent provides the view of a form for users to submit their email and verification code
+// to verify their emails.
 @Component({
   selector: 'app-verify-email',
   templateUrl: './verify-email.component.html',

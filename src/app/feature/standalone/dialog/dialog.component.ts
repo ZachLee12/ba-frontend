@@ -8,6 +8,7 @@ interface DialogData {
   qrcodeUrl: string;
 }
 
+// DialogComponent provides the view for a general-purpose dialog to display any information as a pop-up.
 @Component({
   selector: 'app-dialog',
   standalone: true,

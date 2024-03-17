@@ -1,3 +1,5 @@
+// Interfaces that are related to the login process
+
 export interface UserCredentials {
     username: string,
     password: string

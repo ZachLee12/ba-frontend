@@ -8,6 +8,9 @@ interface SnackBarData {
   actionText: string,
   actionButtonColor: 'primary' | 'accent' | 'warn'
 }
+
+// SnackbarComponent provides a view to a small dialoag that only appears at the bottom of the screen.
+// It can be used, for example, to give feedback to the user on the result of a HTTP request.
 @Component({
   selector: 'app-snackbar',
   standalone: true,

@@ -9,7 +9,7 @@ import { UserService } from 'src/app/core/services/user/user.service';
 import { SnackbarComponent } from 'src/app/feature/standalone/snackbar/snackbar.component';
 import { RequestAccountUser } from 'src/app/interfaces/user.interfaces';
 
-
+// RequestAccountComponent provides the view for a form with steps for a user to request an account with SRL.
 @Component({
   selector: 'app-request-account',
   templateUrl: './request-account.component.html',
@@ -22,11 +22,6 @@ export class RequestAccountComponent {
   snackBar: MatSnackBar = inject(MatSnackBar)
   router: Router = inject(Router)
 
-  //for textarea autoresizing
-  ngZone: NgZone = inject(NgZone)
-  @ViewChild('autosize') autosize!: CdkTextareaAutosize;
-  isEmailValid: boolean = false
-  @ViewChild('emailInput') emailInputRef!: ElementRef;
 
   usernameFormGroup = this.formBuild.group({
     username: ['zhengyang.lee@stud.hslu.ch', Validators.required],
@@ -38,14 +33,8 @@ export class RequestAccountComponent {
     confirmPassword: ['Popcorn34%', Validators.required],
   });
 
-  // Progress bar
+  // Whether if the progress bar should be displayed
   showProgressBar: boolean = false
-
-
-  triggerResize() {
-    // Wait for changes to be applied, then trigger textarea resize.
-    this.ngZone.onStable.pipe(take(1)).subscribe(() => this.autosize.resizeToFitContent(true));
-  }
 
   checkIfPasswordsMatch() {
     const { password } = this.passwordFormGroup.value

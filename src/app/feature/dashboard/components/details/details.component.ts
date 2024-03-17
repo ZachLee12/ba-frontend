@@ -1,7 +1,7 @@
 import { Component, Input, inject } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 
-
+// DetailsComponent provides the view to render more details about a selected resource.
 @Component({
   selector: 'app-details',
   templateUrl: './details.component.html',

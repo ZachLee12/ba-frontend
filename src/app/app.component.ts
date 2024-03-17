@@ -7,6 +7,9 @@ import { Observable, take } from 'rxjs';
 import { SidenavStateEnum } from './interfaces/pageLayout.interfaces';
 import { AdminService } from './core/services/admin/admin.service';
 
+
+// AppComponent is the base of the entire Angular app. All other modules are imported into the App component.
+// Angular bootstraps the entire app from AppComponent.
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',

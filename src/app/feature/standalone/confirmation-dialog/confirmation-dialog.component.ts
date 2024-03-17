@@ -11,6 +11,8 @@ interface DialogData {
   secondaryActionButton: any
 }
 
+// CofirmationDialogComponent pvoides the view of a dialog that pops up when a user performs a
+// destructive or manipulative action, such as deleting their account or updating their account info.
 @Component({
   selector: 'app-confirmation-dialog',
   standalone: true,
@@ -23,6 +25,5 @@ export class ConfirmationDialogComponent {
     public dialogRef: MatDialogRef<ConfirmationDialogComponent>,
     @Inject(MAT_DIALOG_DATA) public data: DialogData,
   ) { }
-
 
 }

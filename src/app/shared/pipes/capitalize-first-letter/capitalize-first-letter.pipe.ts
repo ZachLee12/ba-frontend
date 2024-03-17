@@ -1,5 +1,7 @@
 import { Pipe, PipeTransform } from '@angular/core';
 
+
+// A general pipe that capitalizes the first letter of a string in view templates.
 @Pipe({
   name: 'capitalizeFirstLetter'
 })
