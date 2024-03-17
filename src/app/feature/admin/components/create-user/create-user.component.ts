@@ -101,7 +101,7 @@ export class CreateUserComponent {
       resources: [...formValue.groupedResources, ...formValue.ungroupedResources]
     }
 
-    this.userService.createUser(createUser).pipe(take(1)).subscribe(
+    this.userService.createUser$(createUser).pipe(take(1)).subscribe(
       {
         next: message => {
           this.snackBar.openFromComponent(SnackbarComponent, {

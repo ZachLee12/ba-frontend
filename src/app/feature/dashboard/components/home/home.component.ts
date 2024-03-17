@@ -20,7 +20,7 @@ export class HomeComponent {
 
 
   getUserResources() {
-    this.resourceService.getUserResources()
+    this.resourceService.getUserResources$()
       .pipe(take(1))
       .subscribe({
         next: data => {

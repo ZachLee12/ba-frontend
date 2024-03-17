@@ -68,7 +68,7 @@ export class RequestAccountComponent {
       username: this.usernameFormGroup.get<string>('username')?.value.trim(),
       password: this.passwordFormGroup.get<string>('password')?.value.trim()
     }
-    this.userService.createRequestAccountUser(requestAccountUser as RequestAccountUser)
+    this.userService.createRequestAccountUser$(requestAccountUser as RequestAccountUser)
       .pipe(take(1))
       .subscribe(
         {

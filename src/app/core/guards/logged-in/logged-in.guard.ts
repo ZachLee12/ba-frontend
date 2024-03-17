@@ -1,8 +1,9 @@
-import { CanActivateFn, Router } from '@angular/router';
+import { ActivatedRouteSnapshot, CanActivateFn, Router, RouterStateSnapshot } from '@angular/router';
 import { LoginService } from '../../services/login/login.service';
 import { inject } from '@angular/core';
 
-export const loggedInGuard: CanActivateFn = (route, state) => {
+// LoggedInGuard is a function that only allows a route to be accessed when the user is logged in and has a non-expired JWT.
+export const loggedInGuard: CanActivateFn = (route: ActivatedRouteSnapshot, state: RouterStateSnapshot) => {
   const loginService: LoginService = inject(LoginService)
   const router: Router = inject(Router)
 

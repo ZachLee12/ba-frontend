@@ -7,17 +7,23 @@ import { Router } from '@angular/router';
 import { environment } from 'src/environments/environment.development';
 import { UserEmailVerificationCode } from 'src/app/interfaces/user.interfaces';
 
+// LoginService handles all tasks that are related to the user authentication process, 
+// which is when they try to log in.
 @Injectable({
   providedIn: 'root'
 })
 export class LoginService {
   private httpClient: HttpClient = inject(HttpClient)
   private router: Router = inject(Router)
-  // testinggg git
+
   currentNonce!: string
   currentUsername!: string
 
-  loginForNonceSession(userCredentials: UserCredentials): Observable<UserNonceSession> {
+  // Submit username and password to Alpine API to get a `nonce session`, in which the `nonce` (a random string) returned is needed
+  // for the second login process that uses the One Time Password (OTP).
+  // This `nonce session` is to ensure that no attacker can intercept this login process, the Alpine API also checks if the 
+  // nonce that the user submitted matches the nonce that it had first issued to the user that initiated the request.
+  loginForNonceSession$(userCredentials: UserCredentials): Observable<UserNonceSession> {
     const { username, password } = userCredentials
     const httpBody = { username, password }
     return this.httpClient.post<UserNonceSession>(`${environment.apiUrl}/otp/login-otp-nonce`, httpBody)
@@ -27,14 +33,15 @@ export class LoginService {
       }))
   }
 
-  logout() {
-    sessionStorage.clear()
-    this.router.navigate(['/login'])
-  }
-
-  submitOtp(otp: string): Observable<Token> {
+  submitOtp$(otp: string): Observable<Token> {
     const otpNoncePair = { otp, username: this.currentUsername, nonce: this.currentNonce }
     return this.httpClient.post<Token>(`${environment.apiUrl}/otp/verify-otp-nonce`, otpNoncePair)
+  }
+
+  logout() {
+    // Clear the JWT that are stored in session storage.
+    sessionStorage.clear()
+    this.router.navigate(['/login'])
   }
 
   getDecodedJwt() {
@@ -50,7 +57,9 @@ export class LoginService {
     return sessionStorage.getItem('access_token') || null
   }
 
-  getQrCodeUrl(): Observable<string> {
+  // Get the QR Code url string that is used to render the QR Code that users can scan to 
+  // add OTP to their authenticator app.
+  getQrCodeUrl$(): Observable<string> {
     return this.httpClient.get<string>(`${environment.apiUrl}/otp/otp-qrcode-uri`)
   }
 
@@ -60,15 +69,7 @@ export class LoginService {
     })
   }
 
-  verifyEmail(email: string): Observable<boolean> {
-    //prevent from submitting an empty string to the server
-    if (email.trim() === '') {
-      email = 'dummy-email@dummy.com'
-    }
-    return this.httpClient.get<boolean>(`${environment.apiUrl}/verify-email/${email}`)
-  }
-
-  verifyEmailVerificationCode(username: string, verificationCode: string) {
+  verifyEmailVerificationCode$(username: string, verificationCode: string) {
     const body: UserEmailVerificationCode = {
       username,
       verification_code: verificationCode

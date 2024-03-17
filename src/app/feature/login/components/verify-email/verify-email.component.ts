@@ -28,7 +28,7 @@ export class VerifyEmailComponent {
   onSubmit() {
     const username = this.verifyEmailForm.get('username')?.value
     const verificationCode = this.verifyEmailForm.get('verificationCode')?.value
-    this.loginService.verifyEmailVerificationCode(username, verificationCode)
+    this.loginService.verifyEmailVerificationCode$(username, verificationCode)
       .pipe(take(1))
       .subscribe(
         {

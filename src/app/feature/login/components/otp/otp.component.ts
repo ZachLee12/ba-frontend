@@ -30,7 +30,7 @@ export class OtpComponent {
   showProgressBar: boolean = false
 
   ngOnInit() {
-    this.loginService.getQrCodeUrl().pipe(take(1)).subscribe({
+    this.loginService.getQrCodeUrl$().pipe(take(1)).subscribe({
       next: qrcodeUrl => this.qrcodeUrl = qrcodeUrl
     })
   }
@@ -38,7 +38,7 @@ export class OtpComponent {
   submitOtp() {
     const { otp } = this.otpForm.value
     this.showProgressBar = true
-    this.loginService.submitOtp(otp)
+    this.loginService.submitOtp$(otp)
       .pipe(
         take(1)
       )

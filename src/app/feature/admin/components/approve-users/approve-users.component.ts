@@ -54,7 +54,7 @@ export class ApproveUsersComponent {
   }
 
   getEmailVerificationsAndUsersZip$(): Observable<[EmailVerification[], { username: string, is_password_viewed: boolean }[]]> {
-    return zip(this.adminService.getAllEmailVerifications(), this.adminService.getAllUsers())
+    return zip(this.adminService.getAllEmailVerifications$(), this.adminService.getAllUsers$())
   }
 
   rejectUserAccountRequest(username: string) {
@@ -78,7 +78,7 @@ export class ApproveUsersComponent {
 
     dialogRef.afterClosed().subscribe(confirmDelete => {
       if (confirmDelete) {
-        this.adminService.rejectUserAccountRequest(username)
+        this.adminService.rejectUserAccountRequest$(username)
           .pipe(
             switchMap(() => this.getEmailVerificationsAndUsersZip$()),
             take(1)

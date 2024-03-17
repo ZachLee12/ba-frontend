@@ -1,6 +1,7 @@
 import { Directive, Input, TemplateRef, ViewContainerRef, inject } from '@angular/core';
-import { LoginService } from '../services/login/login.service';
 
+
+// HasRoleDirective will decide if a host template will be rendered or not, based on the user's role
 @Directive({
   selector: '[appHasRole]'
 })
@@ -10,7 +11,6 @@ export class HasRoleDirective {
 
   private templateRef: TemplateRef<any> = inject(TemplateRef)
   private viewContainerRef: ViewContainerRef = inject(ViewContainerRef)
-  private loginService: LoginService = inject(LoginService)
 
   ngOnInit() {
     this.updateView();

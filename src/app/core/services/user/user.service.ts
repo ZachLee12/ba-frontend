@@ -10,27 +10,26 @@ import { environment } from 'src/environments/environment.development';
 export class UserService {
   httpClient: HttpClient = inject(HttpClient)
 
-  createRequestAccountUser(requestAccountUser: RequestAccountUser): Observable<any> {
+  createRequestAccountUser$(requestAccountUser: RequestAccountUser): Observable<any> {
     return this.httpClient.post(`${environment.apiUrl}/users/request-account`, requestAccountUser)
   }
 
-  getRequestAccountUsersCount(): Observable<number> {
+  getRequestAccountUsersCount$(): Observable<number> {
     return this.httpClient
       .get<{ data: number }>(`${environment.apiUrl}/users/request-account-user-count`)
       .pipe(map(res => res.data))
   }
 
-  getUserAccountStatus(username: string): Observable<any> {
+  getUserAccountStatus$(username: string): Observable<any> {
     return this.httpClient
       .get<{ data: any }>(`${environment.apiUrl}/users/user-account-status/${username}`)
       .pipe(map(res => res.data))
   }
 
-  createUser(createUser: CreateUser): Observable<string> {
+  createUser$(createUser: CreateUser): Observable<string> {
     return this.httpClient
       .post<{ data: string }>(`${environment.apiUrl}/users/create`, createUser)
       .pipe(map(res => res.data))
-
   }
 }
 

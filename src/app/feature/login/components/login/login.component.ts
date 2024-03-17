@@ -45,7 +45,7 @@ export class LoginComponent {
     const username = this.loginForm.get('username')?.value.trim()
     const password = this.loginForm.get('password')?.value.trim()
     const userCredentials: UserCredentials = { username, password }
-    this.loginService.loginForNonceSession(userCredentials)
+    this.loginService.loginForNonceSession$(userCredentials)
       .subscribe({
         next: nonceSession => {
           console.log(nonceSession)

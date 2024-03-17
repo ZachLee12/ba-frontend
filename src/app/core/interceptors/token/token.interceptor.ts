@@ -12,6 +12,9 @@ import { Observable, catchError, tap, throwError } from 'rxjs';
 import { Router } from '@angular/router';
 import { PageLayoutService } from '../../services/page-layout/page-layout.service';
 
+// TokenInterceptor automatically attaches the JWT to the bearer header of all HTTP requests to the Alpine API,
+// when the user has successfully logged in. When a JWT is expired, a 401_unauthorized error will be returned
+// by the Alpine API. TokenInterceptor will then redirect users back to /login to require the user to log in again.
 @Injectable()
 export class TokenInterceptor implements HttpInterceptor {
   router: Router = inject(Router)

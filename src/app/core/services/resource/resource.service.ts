@@ -13,7 +13,7 @@ export class ResourceService {
   httpClient: HttpClient = inject(HttpClient)
   loginService: LoginService = inject(LoginService)
 
-  getUserResources(): Observable<UserResource[]> {
+  getUserResources$(): Observable<UserResource[]> {
     const decodedToken = this.loginService.getDecodedJwt()
     const { username } = decodedToken as any
     return this.httpClient
